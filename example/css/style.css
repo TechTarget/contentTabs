@@ -1,0 +1,89 @@
+/* base */
+html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { margin: 0; font-size: 1em; line-height: 1.4; }
+
+/* html5 display definitions */
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+[hidden] { display: none; }
+
+/* 'namespace' as much of normalize as possible due to embedded microsites */
+#micrositeContainer { color: #000; font-family: sans-serif; }
+#micrositeContainer h1, #micrositeContainer h2, #micrositeContainer h3, #micrositeContainer h4, #micrositeContainer h5, #micrositeContainer h6 { line-height: 1em; margin: 0 0 1em; padding: 0; }
+#micrositeContainer p { margin: 0 0 1em; }
+#micrositeContainer a { color: #007dba; text-decoration: none; }
+#micrositeContainer a:hover { text-decoration: underline; }
+#micrositeContainer a:focus { background-color: #eee; border: none; }
+#micrositeContainer a:hover, #micrositeContainer a:active { outline: 0; }
+#micrositeContainer b, #micrositeContainer strong { font-weight: bold; }
+#micrositeContainer blockquote { margin: 1em 40px; }
+#micrositeContainer hr { border-top: 1px solid #ccc; border: 0; display: block; height: 1px; margin: 1em 0; padding: 0; }
+#micrositeContainer pre, #micrositeContainer code, #micrositeContainer kbd, #micrositeContainer samp { _font-family: 'courier new', monospace; font-family: monospace, serif; font-size: 1em; }
+#micrositeContainer pre { white-space: pre-wrap; white-space: pre; word-wrap: break-word; }
+#micrositeContainer small { font-size: 85%; }
+#micrositeContainer sub, #micrositeContainer sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+#micrositeContainer sup { top: -0.5em; }
+#micrositeContainer sub { bottom: -0.25em; }
+#micrositeContainer ul, #micrositeContainer ol { margin: 1em 0; padding: 0 0 0 40px; }
+#micrositeContainer dd { margin: 0 0 0 40px; }
+#micrositeContainer nav ul, #micrositeContainer nav ol { list-style-image: none; list-style: none; margin: 0; padding: 0; }
+#micrositeContainer img { -ms-interpolation-mode: bicubic; border: 0; vertical-align: middle; }
+#micrositeContainer iframe { border: none; }
+#micrositeContainer figure { margin: 0; }
+#micrositeContainer table { border-collapse: collapse; border-spacing: 0; }
+#micrositeContainer th #micrositeContainer td { vertical-align: top; }
+
+/* layout selectors */
+body { background-color: #000; }
+#micrositeContainerCompress { background-color: #fff; margin: 0 auto; width: 980px; }
+#micrositeContent { font-size: 80%; overflow: hidden; clear: both;  }
+#micrositeContentColumnFull { margin: 15px 20px 25px; }
+#micrositeContentColumnLeft { float: left; width: 620px; margin: 0 20px 0; }
+#micrositeContentColumnRight { float: right; width: 300px; margin: 0 20px 0 0; }
+.micrositeContentColumnSpan { clear: both; }
+
+#micrositeHeader, #micrositeFooter, #micrositeContentColumnRight { background-color: #efefef; font-size: 25px; color: #666; padding: 25px; }
+#micrositeHeader, #micrositeFooter { clear: both; margin: 0 0 25px; }
+#micrositeFooter { margin: 25px 0 0; }
+#micrositeContentColumnRight { background-color: #efefef; color: #666; height: 1000px; width: 250px; }
+
+
+
+#micrositeContentFooter { margin: 0 20px; }
+#micrositeContentColumnLeft .micrositeContentColumnSpan { margin: 0; }
+
+
+
+#micrositeContentFooter h6, #micrositeContentColumnLeft h6 { clear: both; background-color: red; display: block; font-weight: bold; font-size: 14px; padding: 10px !important; color: #fff; margin: 0 0 -35px !important; }
+#micrositeContentFooter h6 { background-color: blue; }
+
+
+.contentTabs { border: 1px solid #ccc; overflow: hidden; }
+.contentTabsNav { float: left; width: 180px; background-color: #fafafa; border-right: 1px solid #ccc; height: 475px; position: relative; }
+.contentTabsNav a.button { display: block; position: absolute; color: #fff !important; background-color: #0099d8; bottom: 10px; left: 14px; width: 150px; border-radius: 3px; text-transform: uppercase; padding: 14px 0; text-align: center; }
+.contentTabsNav a.button:hover { text-decoration: none !important; }
+.contentTabsNav ul { margin: 0 !important; padding: 0 !important; background-color: #fff; list-style: none; }
+.contentTabsNav li { border-bottom: 1px solid #ccc; }
+.contentTabsNav li a { border-bottom: 1px solid #f2f2f2; color: #000 !important; font-weight: bold; display: block; text-transform: uppercase; padding: 10px 7px; max-height: 40px; }
+.contentTabsNav li a:hover { background-color: #d4e9f2; text-decoration: none !important; }
+.contentTabsNav li a.active { color: #fff !important; background-color: #0099d8; border-bottom: none; position: relative; }
+.contentTabsNav li a.active:after { content: ''; position: absolute; display: block; top: 0; right: -12px; border-top: 20px solid transparent; border-left: 12px solid #0099d8; border-bottom: 20px solid transparent; }
+.contentTabsPanelCollection { float: right; width: 740px; overflow: scroll; height: 475px; }
+.contentTabsPanel { display: none; padding: 10px; }
+.contentTabsPanel:first-child { display: block; }
+
+.contentTabs.tabsHorizontalTop {}
+.contentTabs.tabsHorizontalBottom {}
+.contentTabs.tabsVerticalLeft {}
+.contentTabs.tabsVerticalRight {}
+
+.oneColList > ul, .twoColGrid > ul { margin: 0 !important; padding: 0 !important; list-style: none; overflow: hidden; border-bottom: 1px solid blue; }
+.twoColGrid ul > li { clear: left; border-top: 1px solid red; padding: 10px 0; }
+.twoColGrid .gridItem { width: 330px; float: left; }
+.twoColGrid .gridItem:first-child { border-right: 1px solid purple; padding-right: 10px; }
+
+.mediaBlock {margin:10px;}
+.mediaBlock, .mediaBlockContent {overflow:hidden; _overflow:visible; zoom:1;}
+.mediaBlock img {float:left; margin-right: 10px;display:block;}
+
+.viewNow:before { content: '> '; }

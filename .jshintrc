@@ -9,5 +9,9 @@
 	"trailing": true,
 	"undef": true,
 	"browser": true,
-	"jquery": true
+	"jquery": true,
+  "predef" : {
+    "console" : true,
+    "define" : true
+  },
 }
