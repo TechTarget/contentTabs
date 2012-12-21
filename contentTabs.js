@@ -35,8 +35,32 @@
 
   Plugin.prototype = {
 
-    init: function() {
+    getTabs: function() {
+      return $('.contentTabsNav', Plugin.prototype.element).find('li');
+    },
 
+    getPanels: function() {
+      return $('.contentTabsPanel', Plugin.prototype.element);
+    },
+
+    selectTab: function(i, tabs) {
+      tabs.removeClass('active');
+      tabs.eq(i).addClass('active');
+      Plugin.prototype.selectPanel(i);
+    },
+
+    selectPanel: function(i) {
+      var panels = this.getPanels();
+      panels.hide();
+      panels.eq(i).show();
+    },
+
+    init: function() {
+      var tabs = this.getTabs();
+      tabs.on('click', function(e) {
+        e.preventDefault();
+        Plugin.prototype.selectTab($(this).index(), tabs);
+      });
     }
 
   };
