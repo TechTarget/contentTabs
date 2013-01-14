@@ -19,6 +19,7 @@
   // defaults
   var pluginName = 'contentTabs';
   var defaults = {
+    tabLocation: 'left',
     tabActiveClass: 'active',
     panelActiveClass: 'active',
     mouseEvent: 'click'
@@ -35,12 +36,19 @@
 
   Plugin.prototype = {
 
+    tabLocationClassName: {
+      left: "tabsVerticalLeft",
+      right: "tabsVerticalRight",
+      top: "tabsHorizontalTop",
+      bottom: "tabsHorizontalBottom"
+    },
+
     getTabs: function() {
-      return $('.contentTabsNav', Plugin.prototype.element).find('li');
+      return $('.contentTabsNav', this.element).find('li');
     },
 
     getPanels: function() {
-      return $('.contentTabsPanel', Plugin.prototype.element);
+      return $('.contentTabsPanel', this.element);
     },
 
     selectTab: function(i, tabs) {
@@ -56,11 +64,18 @@
     },
 
     init: function() {
+
+      // apply tab navigation position class to tabs
+      var className = this.tabLocationClassName[this.options.tabLocation];
+      $(this.element).addClass(className);
+
+      // click event handler
       var tabs = this.getTabs();
       tabs.on('click', function(e) {
         e.preventDefault();
         Plugin.prototype.selectTab($(this).index(), tabs);
       });
+
     }
 
   };
