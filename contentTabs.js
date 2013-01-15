@@ -19,6 +19,7 @@
   // defaults
   var pluginName = 'contentTabs';
   var defaults = {
+    displayTabs: true,
     tabLocation: 'left',
     tabActiveClass: 'active',
     panelActiveClass: 'active',
@@ -64,6 +65,12 @@
     },
 
     init: function() {
+
+      // don't display any tabs
+      if (!this.options.displayTabs) {
+        $('.contentTabsNav').remove();
+        return;
+      }
 
       // apply tab navigation position class to tabs
       var className = this.tabLocationClassName[this.options.tabLocation];
