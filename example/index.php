@@ -16,18 +16,20 @@ ini_set('display_errors', '1');
     $(document).on('ready', function() {
 
       // init plugin
-      $('.contentTabs').contentTabs();
-
-      // create contact button and add to dom with click handler
-      var contactBtn = $('<a>', {
-        text: 'Contact HP',
-        'class': 'button',
-        href: 'http://www8.hp.com/us/en/contact-hp/contact.html'
-      })
-        .appendTo('.contentTabsNav')
-        .on('click', function(e) {
-          e.preventDefault();
-          window.open(this.href);
+      $('.contentTabs').eq(0).contentTabs({
+        tabLocation: 'left'
+      });
+      $('.contentTabs').eq(1).contentTabs({
+        tabLocation: 'right'
+      });
+      $('.contentTabs').eq(2).contentTabs({
+        tabLocation: 'top'
+      });
+      $('.contentTabs').eq(3).contentTabs({
+        tabLocation: 'bottom'
+      });
+      $('.contentTabs').eq(4).contentTabs({
+        displayTabs: false
       });
 
     });
@@ -46,13 +48,31 @@ ini_set('display_errors', '1');
 
     <div id="micrositeContentColumnFull">
 
+      <h2>Left tabs</h2>
+
+      <?php include('inc/tabs.html'); ?>
+
+      <h2>Right tabs</h2>
+
+      <?php include('inc/tabs.html'); ?>
+
+      <h2>Top tabs</h2>
+
+      <?php include('inc/tabs.html'); ?>
+
+      <h2>Bottom tabs</h2>
+
+      <?php include('inc/tabs.html'); ?>
+
+      <h2>No tabs</h2>
+
       <?php include('inc/tabs.html'); ?>
 
     </div>
 
     <div id="micrositeContentColumnLeft">
 
-      <?php include('inc/tabs.html'); ?>
+      Left Column
 
     </div>
 

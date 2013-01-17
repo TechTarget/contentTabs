@@ -38,11 +38,11 @@ body { background-color: #000; }
 #micrositeContainerCompress { background-color: #fff; margin: 0 auto; width: 980px; }
 #micrositeContent { font-size: 80%; overflow: hidden; clear: both;  }
 #micrositeContentColumnFull { margin: 15px 20px 25px; }
-#micrositeContentColumnLeft { float: left; width: 620px; margin: 0 20px 0; }
+#micrositeContentColumnLeft { float: left; width: 570px; margin: 0 20px 0; }
 #micrositeContentColumnRight { float: right; width: 300px; margin: 0 20px 0 0; }
 .micrositeContentColumnSpan { clear: both; }
 
-#micrositeHeader, #micrositeFooter, #micrositeContentColumnRight { background-color: #efefef; font-size: 25px; color: #666; padding: 25px; }
+#micrositeHeader, #micrositeFooter, #micrositeContentColumnLeft, #micrositeContentColumnRight { background-color: #efefef; font-size: 25px; color: #666; padding: 25px; }
 #micrositeHeader, #micrositeFooter { clear: both; margin: 0 0 25px; }
 #micrositeFooter { margin: 25px 0 0; }
 #micrositeContentColumnRight { background-color: #efefef; color: #666; height: 1000px; width: 250px; }
@@ -58,32 +58,58 @@ body { background-color: #000; }
 #micrositeContentFooter h6 { background-color: blue; }
 
 
-.contentTabs { border: 1px solid #ccc; overflow: hidden; }
-.contentTabsNav { float: left; width: 180px; background-color: #fafafa; border-right: 1px solid #ccc; height: 475px; position: relative; }
+/* media object block */
+.mediaBlock { margin: 10px; }
+.mediaBlock, .mediaBlockContent { overflow: hidden; _overflow: visible; zoom: 1; }
+.mediaBlock img { float: left; margin-right: 10px; display: block; }
+
+/* content tabs plugin styles */
+.contentTabs { border: 1px solid #ccc; overflow: hidden; margin: 0 0 25px; }
+.contentTabsCaption { font-size: 26px; margin: 0 0 5px !important; }
+.contentTabsNav { background-color: #fafafa; position: relative; }
 .contentTabsNav a.button { display: block; position: absolute; color: #fff !important; background-color: #0099d8; bottom: 10px; left: 14px; width: 150px; border-radius: 3px; text-transform: uppercase; padding: 14px 0; text-align: center; }
 .contentTabsNav a.button:hover { text-decoration: none !important; }
 .contentTabsNav ul { margin: 0 !important; padding: 0 !important; background-color: #fff; list-style: none; }
 .contentTabsNav li { border-bottom: 1px solid #ccc; }
-.contentTabsNav li a { border-bottom: 1px solid #f2f2f2; color: #000 !important; font-weight: bold; display: block; text-transform: uppercase; padding: 10px 7px; max-height: 40px; }
+.contentTabsNav li a { /* border-bottom: 1px solid #f2f2f2; */ color: #000 !important; display: block; text-transform: uppercase; padding: 10px 7px; max-height: 40px; }
 .contentTabsNav li a:hover { background-color: #d4e9f2; text-decoration: none !important; }
-.contentTabsNav li a.active { color: #fff !important; background-color: #0099d8; border-bottom: none; position: relative; }
-.contentTabsNav li a.active:after { content: ''; position: absolute; display: block; top: 0; right: -12px; border-top: 20px solid transparent; border-left: 12px solid #0099d8; border-bottom: 20px solid transparent; }
-.contentTabsPanelCollection { float: right; width: 740px; overflow: scroll; height: 475px; }
-.contentTabsPanel { display: none; padding: 10px; }
+.contentTabsNav li.active a { color: #fff !important; background-color: #0099d8 !important; border-bottom: none; position: relative; }
+.contentTabsPanelCollection { height: 475px; overflow-y: scroll; overflow-x: hidden;}
+.contentTabsPanel { display: none; padding: 10px; color: #4c4d4f; }
 .contentTabsPanel:first-child { display: block; }
+.contentTabsPanel p { margin: 0 0 10px !important; }
+.contentTabsPanel h3 { font-size: 16px !important; margin: 0 0 5px !important; }
 
-.contentTabs.tabsHorizontalTop {}
-.contentTabs.tabsHorizontalBottom {}
-.contentTabs.tabsVerticalLeft {}
-.contentTabs.tabsVerticalRight {}
+/* content tabs positioning */
+.tabsVerticalLeft .contentTabsNav, .tabsVerticalRight .contentTabsNav { width: 180px; height: 475px; }
+.tabsVerticalLeft .contentTabsNav li.active a:after,
+.tabsVerticalRight .contentTabsNav li.active a:before,
+.tabsHorizontalTop .contentTabsNav li.active a:after,
+.tabsHorizontalBottom .contentTabsNav li.active a:before { content: ''; position: absolute; display: block; height: 0; width: 0; }
+.tabsVerticalLeft .contentTabsNav { float: left; border-right: 1px solid #ccc; }
+.tabsVerticalLeft .contentTabsNav li.active a:after { top: 0; right: -12px; border-top: 20px solid transparent; border-left: 12px solid #0099d8; border-bottom: 20px solid transparent; }
+.tabsVerticalLeft .contentTabsPanelCollection { float: right; width: 740px; }
+.tabsVerticalRight .contentTabsNav { float: right; border-left: 1px solid #ccc; }
+.tabsVerticalRight .contentTabsNav li.active a:before { top: 0; left: -12px; border-top: 20px solid transparent; border-right: 12px solid #0099d8; border-bottom: 20px solid transparent; }
+.tabsVerticalRight .contentTabsPanelCollection { float: left; width: 740px; }
+.tabsHorizontalTop .contentTabsNav ul { border-bottom: 1px solid #ccc; margin-bottom: 20px !important; text-align: center; }
+.tabsHorizontalTop .contentTabsNav li, .tabsHorizontalBottom .contentTabsNav li { display: inline-block; border-right: 1px solid #ccc; border-bottom: none; }
+.tabsHorizontalTop .contentTabsNav li:first-child, .tabsHorizontalBottom .contentTabsNav li:first-child { border-left: 1px solid #ccc; }
+.tabsHorizontalTop .contentTabsNav li.active a:after { top: 38px; left: 33%; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #0099d8; }
+.tabsHorizontalBottom .contentTabsNav { position: relative; top: 475px; }
+.tabsHorizontalBottom .contentTabsNav ul { border-top: 1px solid #ccc; margin-top: 20px !important; text-align: center; }
+.tabsHorizontalBottom .contentTabsNav li:first-child { border-left: 1px solid #ccc; }
+.tabsHorizontalBottom .contentTabsNav li.active a:before { top: -10px; left: 33%; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #0099d8; }
+.tabsHorizontalBottom .contentTabsPanelCollection { margin-top: -60px; margin-bottom: 60px; }
+.tabsNone .contentTabsNav { display: none; }
 
-.oneColList > ul, .twoColGrid > ul { margin: 0 !important; padding: 0 !important; list-style: none; overflow: hidden; border-bottom: 1px solid blue; }
-.twoColGrid ul > li { clear: left; border-top: 1px solid red; padding: 10px 0; }
-.twoColGrid .gridItem { width: 330px; float: left; }
-.twoColGrid .gridItem:first-child { border-right: 1px solid purple; padding-right: 10px; }
+.oneColList > ul, .twoColGrid > ul { margin: 0 !important; padding: 0 !important; list-style: none; overflow: hidden; }
+.twoColGrid ul > li { clear: left; border-top: 1px solid #ddd; overflow: hidden; }
+.twoColGrid .gridItem { width: 46%; float: left; margin: 15px 10px; }
+.twoColGrid .gridItem:first-child { border-right: 1px solid #ddd; padding-right: 10px; }
+.twoColGrid .gridItem p { margin: 5px 0 0 !important; line-height: 1.1 !important; }
 
-.mediaBlock {margin:10px;}
-.mediaBlock, .mediaBlockContent {overflow:hidden; _overflow:visible; zoom:1;}
-.mediaBlock img {float:left; margin-right: 10px;display:block;}
-
-.viewNow:before { content: '> '; }
+.oneColList { margin: -10px 0 0;}
+.oneColList li { border-top: 1px solid #ccc; margin: 15px 0 5px; padding: 15px 0 0; }
+.oneColList h4 { font-size: 16px; margin: 0 0 5px !important; }
+.oneColList p { margin: 0 0 5px !important; }

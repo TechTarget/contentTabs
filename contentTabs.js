@@ -1,5 +1,5 @@
 /*!
-* Content Tabs v0.2 (http://okize.github.com/)
+* Content Tabs v0.3 (http://okize.github.com/)
 * Copyright (c) 2012 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -28,7 +28,7 @@
 
   // plugin constructor
   function Plugin( element, options ) {
-    this.element = element;
+    this.el = $(element);
     this.options = $.extend( {}, defaults, options) ;
     this._defaults = defaults;
     this._name = pluginName;
@@ -37,44 +37,17 @@
 
   Plugin.prototype = {
 
-    tabLocationClassName: {
-      left: "tabsVerticalLeft",
-      right: "tabsVerticalRight",
-      top: "tabsHorizontalTop",
-      bottom: "tabsHorizontalBottom"
-    },
-
-    getTabs: function() {
-      return $('.contentTabsNav', this.element).find('li');
-    },
-
-    getPanels: function() {
-      return $('.contentTabsPanel', this.element);
-    },
-
-    selectTab: function(i, tabs) {
-      tabs.removeClass('active');
-      tabs.eq(i).addClass('active');
-      Plugin.prototype.selectPanel(i);
-    },
-
-    selectPanel: function(i) {
-      var panels = this.getPanels();
-      panels.hide();
-      panels.eq(i).show();
-    },
-
     init: function() {
 
       // don't display any tabs
       if (!this.options.displayTabs) {
-        $('.contentTabsNav').remove();
+        this.removeTabs();
         return;
       }
 
       // apply tab navigation position class to tabs
       var className = this.tabLocationClassName[this.options.tabLocation];
-      $(this.element).addClass(className);
+      this.el.addClass(className);
 
       // click event handler
       var tabs = this.getTabs();
@@ -83,6 +56,38 @@
         Plugin.prototype.selectTab($(this).index(), tabs);
       });
 
+    },
+
+    tabLocationClassName: {
+      left: 'tabsVerticalLeft',
+      right: 'tabsVerticalRight',
+      top: 'tabsHorizontalTop',
+      bottom: 'tabsHorizontalBottom'
+    },
+
+    removeTabs: function() {
+      this.el.addClass('tabsNone');
+      $('.contentTabsNav', this.el).remove();
+    },
+
+    getTabs: function() {
+      return this.el.find('.contentTabsNav').find('li');
+    },
+
+    getPanels: function() {
+      return $('.contentTabsPanel', this.el);
+    },
+
+    selectTab: function(i, tabs) {
+      tabs.removeClass('active');
+      tabs.eq(i).addClass('active');
+      this.selectPanel(i);
+    },
+
+    selectPanel: function(i) {
+      var panels = this.getPanels();
+      panels.hide();
+      panels.eq(i).show();
     }
 
   };
