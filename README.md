@@ -1,4 +1,1 @@
-contentTabs
-===========
-
-jQuery plugin for content tabs
+Content Tabs microsite component
