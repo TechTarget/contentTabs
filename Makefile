@@ -1,11 +1,9 @@
 # LINT & MINIFY
-# jshint (>=0.7.0) & uglifyjs (>=1.2.6) are required
+# jshint (>=0.9) & uglifyjs (>=2.2) are required
 
-SCRIPT_DEV = contentTabs.js
-SCRIPT_MIN = contentTabs.min.js
-
+SCRIPT_NAME = contentTabs
 FILESIZE_MAX = 1000
-FILESIZE_GZIP = `gzip -c ${SCRIPT_MIN} | wc -c`
+FILESIZE_GZIP = `gzip -c ${SCRIPT_NAME}.min.js | wc -c`
 FILESIZE_PASS = "${FILESIZE_GZIP} bytes  \(^_^)/"
 FILESIZE_FAIL = "${FILESIZE_GZIP} bytes  ^(>_<)^"
 
@@ -24,10 +22,15 @@ endef
 default:
 
 	@echo "* linting..."
-	@jshint ${SCRIPT_DEV} --show-non-errors
+	@jshint ${SCRIPT_NAME}.js --show-non-errors
 
 	@echo "* minifying..."
-	@uglifyjs ${SCRIPT_DEV} > ${SCRIPT_MIN}
+	@uglifyjs ${SCRIPT_NAME}.js \
+						--output ${SCRIPT_NAME}.min.js \
+						--source-map ${SCRIPT_NAME}.min.js.map  \
+						--compress \
+						--mangle \
+						--comments '/^!\s/'
 
 	@echo "* gzip test..."
 	@$(FILESIZE_CHECK)
