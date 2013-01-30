@@ -108,6 +108,7 @@ body { background-color: #000; }
 .twoColGrid .gridItem { width: 46%; float: left; margin: 15px 10px; }
 .twoColGrid .gridItem:first-child { border-right: 1px solid #ddd; padding-right: 10px; }
 .twoColGrid .gridItem p { margin: 5px 0 0 !important; line-height: 1.1 !important; }
+.twoColGrid .mediaBlockImage { width: 80px; height: 100px; }
 
 .oneColList { margin: -10px 0 0;}
 .oneColList li { border-top: 1px solid #ccc; margin: 15px 0 5px; padding: 15px 0 0; }
