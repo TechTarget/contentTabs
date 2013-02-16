@@ -20,6 +20,7 @@
   var pluginName = 'contentTabs';
   var defaults = {
     displayTabs: true,
+    pinPanelIntro: false,
     tabLocation: 'left',
     tabActiveClass: 'active',
     panelActiveClass: 'active',
@@ -37,7 +38,7 @@
 
   Plugin.prototype = {
 
-    init: function() {
+    init: function () {
 
       // don't display any tabs
       if (!this.options.displayTabs) {
@@ -46,15 +47,15 @@
       }
 
       // apply tab navigation position class to tabs
-      var className = this.tabLocationClassName[this.options.tabLocation];
-      this.el.addClass(className);
+      this.setTabPosition( this.tabLocationClassName[this.options.tabLocation] );
 
-      // click event handler
-      var tabs = this.getTabs();
-      tabs.on('click', function(e) {
-        e.preventDefault();
-        Plugin.prototype.selectTab($(this).index(), tabs);
-      });
+      // add class if we want the panel intro to be 'pinned'
+      if (this.options.pinPanelIntro) {
+        this.el.addClass('pinPanelIntro');
+      }
+
+      // init tabs
+      this.getTabs();
 
     },
 
@@ -65,29 +66,49 @@
       bottom: 'tabsHorizontalBottom'
     },
 
-    removeTabs: function() {
+    removeTabs: function () {
       this.el.addClass('tabsNone');
-      $('.contentTabsNav', this.el).remove();
+      this.getTabs().remove();
     },
 
-    getTabs: function() {
-      return this.el.find('.contentTabsNav').find('li');
+    setTabPosition: function (pos) {
+      this.el.addClass(pos);
     },
 
-    getPanels: function() {
-      return $('.contentTabsPanel', this.el);
+    getTabs: function () {
+
+      var self = this,
+          tabs = self.el.find('.contentTabsNav').find('li');
+
+      // apply active class to first tab if there's no active class
+      if (!tabs.hasClass('active')) {
+        tabs.eq(0).addClass('active');
+      }
+
+      // bind click event handler
+      tabs.on('click', function (e) {
+        e.preventDefault();
+        self.selectTab($(this).index(), tabs);
+      });
+
+      return tabs;
+
     },
 
-    selectTab: function(i, tabs) {
+    getPanels: function () {
+      return this.el.find('.contentTabsPanel');
+    },
+
+    selectTab: function (eq, tabs) {
       tabs.removeClass('active');
-      tabs.eq(i).addClass('active');
-      this.selectPanel(i);
+      tabs.eq(eq).addClass('active');
+      this.selectPanel(eq);
     },
 
-    selectPanel: function(i) {
+    selectPanel: function (eq) {
       var panels = this.getPanels();
       panels.hide();
-      panels.eq(i).show();
+      panels.eq(eq).show();
     }
 
   };
