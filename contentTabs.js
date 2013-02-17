@@ -1,6 +1,6 @@
 /*!
-* Content Tabs v0.3 (http://okize.github.com/)
-* Copyright (c) 2012 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
+* Content Tabs v1.0.1 (http://okize.github.com/)
+* Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
 */
 
 // use AMD or browser globals to create a jQuery plugin.

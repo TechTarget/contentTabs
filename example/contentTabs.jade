@@ -1,5 +1,4 @@
 - var tabs = ['Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5'];
-- var count = 1;
 
 .contentTabs
   .contentTabsNav
@@ -7,10 +6,10 @@
         for tab in tabs
           li: a(href='#') #{tab}
   .contentTabsPanelCollection
-    for tab in tabs
+    each tab, index in tabs
       .contentTabsPanel
         .contentTabsPanelIntro
-          h3 Panel for tab "#{tab}" (#{count} of #{tabs.length} panels)
+          h3 Panel for tab "#{tab}" (#{index+1} of #{tabs.length} panels)
           p Mea labitur singulis intellegebat eu, mei solum impetus referrentur ad, mea quem persequeris no. Pri id similique honestatis, vel senserit liberavisse ne. Id pro modo mediocritatem. Diam dolore docendi ut duo, illum conceptam in vix. Eu errem complectitur vel, esse libris percipitur ex mel, vim ex mundi quidam volutpat. No tritani scaevola apeirian vim.
         .twoColGrid
           ul
@@ -25,4 +24,3 @@
                       p: a.viewNow(href='replaceMe') View Now
                 - }
             - }
-      - count++;
