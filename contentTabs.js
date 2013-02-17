@@ -85,6 +85,8 @@
         tabs.eq(0).addClass('active');
       }
 
+      tabs.eq( tabs.length - 1 ).addClass('last');
+
       // bind click event handler
       tabs.on('click', function (e) {
         e.preventDefault();
