@@ -3,7 +3,6 @@
 * Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
 */
 
-// use AMD or browser globals to create a jQuery plugin.
 ;(function (factory) {
 
   if (typeof define === 'function' && define.amd) {
@@ -68,10 +67,12 @@
       tabs.eq( tabs.length - 1 ).addClass('last');
 
       // bind click event handler
-      var self = this;
+      var self = this, eq;
       tabs.on('click', function (e) {
         e.preventDefault();
-        self.selectTab( $(this).index() );
+        eq = $(this).index();
+        self.selectTab(eq);
+        self.selectPanel(eq);
       });
 
     },
@@ -97,7 +98,6 @@
 
     selectTab: function (eq) {
       this.getTabs().removeClass('active').eq(eq).addClass('active');
-      this.selectPanel(eq);
     },
 
     removeTabs: function () {
@@ -119,8 +119,6 @@
 
   };
 
-  // A really lightweight plugin wrapper around the constructor,
-  // preventing against multiple instantiations
   $.fn[pluginName] = function ( options ) {
     return this.each(function () {
       if (!$.data(this, 'plugin_' + pluginName)) {
