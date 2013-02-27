@@ -63,9 +63,9 @@ a:focus { color: #2ba6cb; outline: none; }
 .contentTabsNav a.button { display: block; position: absolute; color: #fff !important; background-color: #0099d8; bottom: 10px; left: 14px; width: 150px; border-radius: 3px; text-transform: uppercase; padding: 14px 0; text-align: center; }
 .contentTabsNav a.button:hover { text-decoration: none !important; }
 .contentTabsNav ul { margin: 0 !important; padding: 0 !important; background-color: #fff; list-style: none; }
-.contentTabsNav li { border-bottom: 1px solid #ccc; }
+.contentTabsNav li:hover { background-color: #d4e9f2; }
 .contentTabsNav li a { color: #000 !important; display: block; text-transform: uppercase; padding: 10px 7px; max-height: 40px; }
-.contentTabsNav li a:hover { background-color: #d4e9f2; text-decoration: none !important; }
+.contentTabsNav li a:hover { text-decoration: none !important; }
 .contentTabsNav li.active a { color: #fff !important; background-color: #0099d8 !important; border-bottom: none; position: relative; }
 .contentTabsPanelCollection { height: 475px; overflow-y: scroll; overflow-x: hidden; }
 .contentTabsPanel { display: none; padding: 10px; color: #4c4d4f; }

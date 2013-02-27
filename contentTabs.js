@@ -3,6 +3,7 @@
 * Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
 */
 
+// use AMD or browser globals to create a jQuery plugin.
 ;(function (factory) {
 
   if (typeof define === 'function' && define.amd) {
