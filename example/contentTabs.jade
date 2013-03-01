@@ -1,4 +1,4 @@
-- var tabs = ['Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5'];
+- var tabs = ['Tab 1', 'Tab 2', 'Tab 3', 'Tab 4', 'Tab 5'], graphicSize = '80x100', intoGraphicSize = '120x120';
 
 .contentTabs
   .contentTabsNav
@@ -8,19 +8,34 @@
   .contentTabsPanelCollection
     each tab, index in tabs
       .contentTabsPanel
-        .contentTabsPanelIntro
-          h3 Panel for tab "#{tab}" (#{index+1} of #{tabs.length} panels)
-          p Mea labitur singulis intellegebat eu, mei solum impetus referrentur ad, mea quem persequeris no. Pri id similique honestatis, vel senserit liberavisse ne. Id pro modo mediocritatem. Diam dolore docendi ut duo, illum conceptam in vix. Eu errem complectitur vel, esse libris percipitur ex mel, vim ex mundi quidam volutpat. No tritani scaevola apeirian vim.
-        .twoColGrid
+        .contentTabsPanelContent.twoColGrid
+          .contentTabsPanelIntro
+            h3 Panel for tab "#{tab}" (#{index+1} of #{tabs.length} panels)
+            p
+              img.contentTabsPanelIntroGraphic(data-src='example.com/#{intoGraphicSize}/mo', alt='')
+              @Html.Ipsum.p(1, 8)
           ul
             - for (var i = 0; i < 3; ++i) {
               li
                 - for (var j = 0; j < 2; ++j) {
                   .mediaBlock.gridItem
-                    img.mediaBlock(data-src='example.com/80x100/mo', alt='')
+                    img.mediaBlock(data-src='example.com/#{graphicSize}/mo', alt='')
                     .mediaBlockContent
-                      h4: a(href='replaceMe') Etlam sed est at tellus placerat sodales in erat
-                      p Et vel nihil discere delicata, pro autem fierent definitiones ea. Purto nostro tacimates in sea. Vel ea habeo pertinacia, has amet tollit suavitate te. Et quodsi rationibus cum. In eos dicta sanctus, adhuc civibus ad ius. Duo corrumpit incorrupte cu. Illum molestie mel cu, qui ei prompta bonorum probatus.
+                      h4: a(href='replaceMe') @Html.Ipsum.h4(5)
+                      @Html.Ipsum.p(1, 4)
                       p: a.viewNow(href='replaceMe') View Now
                 - }
             - }
+        //- .contentTabsPanelContent.oneColList
+        //-   .contentTabsPanelIntro
+        //-     h3 Panel for tab "#{tab}" (#{index+1} of #{tabs.length} panels)
+        //-     p
+        //-       img.contentTabsPanelIntroGraphic(data-src='example.com/#{intoGraphicSize}/mo', alt='')
+        //-       @Html.Ipsum.p(1, 8)
+        //-   ul
+        //-     - for (var i = 0; i < 10; ++i) {
+        //-       li
+        //-         h4: a(href='replaceMe') @Html.Ipsum.h4(5)
+        //-         @Html.Ipsum.p(1, 8)
+        //-         p: a.viewNow(href='replaceMe') View Now
+        //-     - }

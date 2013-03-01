@@ -1,5 +1,5 @@
 /*!
-* Content Tabs v1.0.2 (http://okize.github.com/)
+* Content Tabs v1.0.3 (http://okize.github.com/)
 * Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -51,9 +51,9 @@
       // apply tab navigation position class to tabs
       this.setTabLocation( this.tabLocationClassName[this.options.tabLocation] );
 
-      // add class if we want the panel intro to be 'pinned'
+      // pinning is like winning
       if (this.options.pinPanelIntro) {
-        this.el.addClass('pinPanelIntro');
+        this.pinPanels(this.el);
       }
 
       // init tabs
@@ -116,6 +116,22 @@
 
     selectPanel: function (eq) {
       this.getPanels().hide().eq(eq).show();
+    },
+
+    pinPanels: function () {
+
+      var sectionsToPin, $this;
+
+      // add class if we want the panel intro to be 'pinned'
+      this.el.addClass('pinPanelIntro');
+
+      // move contentTabsPanelIntro divs outside their parent in the dom
+      sectionsToPin = this.el.find('.contentTabsPanelIntro');
+      sectionsToPin.each( function () {
+        $this = $(this);
+        $this.insertBefore( $this.parent() );
+      });
+
     }
 
   };
