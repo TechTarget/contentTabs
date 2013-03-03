@@ -1,148 +1,126 @@
 /*!
-* Content Tabs v1.0.3 (http://okize.github.com/)
-* Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
+Content Tabs v1.0.3 (http://okize.github.com/)
+Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/licenses/mit-license.php
 */
 
-// use AMD or browser globals to create a jQuery plugin.
-;(function (factory) {
 
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery'], factory);
-  } else {
-    factory(jQuery);
-  }
+(function() {
 
-}(function ($) {
-
-  'use strict';
-
-  // defaults
-  var pluginName = 'contentTabs';
-  var defaults = {
-    displayTabs: true,
-    pinPanelIntro: false,
-    tabLocation: 'left',
-    tabActiveClass: 'active',
-    panelActiveClass: 'active',
-    mouseEvent: 'click'
-  };
-
-  // plugin constructor
-  function Plugin( element, options ) {
-    this.el = $(element);
-    this.options = $.extend( {}, defaults, options);
-    this._defaults = defaults;
-    this._name = pluginName;
-    this.tabs = false;
-    this.panels = false;
-    this.init();
-  }
-
-  Plugin.prototype = {
-
-    init: function () {
-
-      // don't display any tabs
-      if (!this.options.displayTabs) {
-        this.removeTabs();
-        return;
-      }
-
-      // apply tab navigation position class to tabs
-      this.setTabLocation( this.tabLocationClassName[this.options.tabLocation] );
-
-      // pinning is like winning
-      if (this.options.pinPanelIntro) {
-        this.pinPanels(this.el);
-      }
-
-      // init tabs
-      var tabs = this.getTabs();
-
-      // apply 'active' class to first tab if there's no active class
-      if (!tabs.hasClass('active')) {
-        tabs.eq(0).addClass('active');
-      }
-
-      // apply 'last' class to last tab in collection
-      tabs.eq( tabs.length - 1 ).addClass('last');
-
-      // bind click event handler
-      var self = this, eq;
-      tabs.on('click', function (e) {
-        e.preventDefault();
-        eq = $(this).index();
-        self.selectTab(eq);
-        self.selectPanel(eq);
-      });
-
-    },
-
-    tabLocationClassName: {
-      left: 'tabsVerticalLeft',
-      right: 'tabsVerticalRight',
-      top: 'tabsHorizontalTop',
-      bottom: 'tabsHorizontalBottom'
-    },
-
-    setTabLocation: function (pos) {
-      this.el.addClass(pos);
-    },
-
-    getTabs: function () {
-      // cache tabs collection
-      if (!this.tabs) {
-        this.tabs = this.el.find('.contentTabsNav').find('li');
-      }
-      return this.tabs;
-    },
-
-    selectTab: function (eq) {
-      this.getTabs().removeClass('active').eq(eq).addClass('active');
-    },
-
-    removeTabs: function () {
-      this.el.addClass('tabsNone');
-      this.getTabs().remove();
-    },
-
-    getPanels: function () {
-      // cache panels collection
-      if (!this.panels) {
-        this.panels = this.el.find('.contentTabsPanel');
-      }
-      return this.panels;
-    },
-
-    selectPanel: function (eq) {
-      this.getPanels().hide().eq(eq).show();
-    },
-
-    pinPanels: function () {
-
-      var sectionsToPin, $this;
-
-      // add class if we want the panel intro to be 'pinned'
-      this.el.addClass('pinPanelIntro');
-
-      // move contentTabsPanelIntro divs outside their parent in the dom
-      sectionsToPin = this.el.find('.contentTabsPanelIntro');
-      sectionsToPin.each( function () {
-        $this = $(this);
-        $this.insertBefore( $this.parent() );
-      });
-
+  (function(factory) {
+    if (typeof define === 'function' && define.amd) {
+      return define(['jquery'], factory);
+    } else {
+      return factory(jQuery);
     }
+  })(function($) {
+    'use strict';
+    var Plugin, defaults, pluginName;
+    pluginName = 'contentTabs';
+    defaults = {
+      displayTabs: true,
+      pinPanelIntro: false,
+      tabLocation: 'left',
+      tabActiveClass: 'active',
+      panelActiveClass: 'active',
+      mouseEvent: 'click'
+    };
+    Plugin = (function() {
 
-  };
-
-  $.fn[pluginName] = function ( options ) {
-    return this.each(function () {
-      if (!$.data(this, 'plugin_' + pluginName)) {
-        $.data(this, 'plugin_' + pluginName,
-          new Plugin( this, options ));
+      function Plugin(element, options) {
+        this.element = element;
+        this.options = $.extend({}, defaults, options);
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.el = $(this.element);
+        this.tabs = null;
+        this.panels = null;
+        this.tabLocationClassName = {
+          left: 'tabsVerticalLeft',
+          right: 'tabsVerticalRight',
+          top: 'tabsHorizontalTop',
+          bottom: 'tabsHorizontalBottom'
+        };
+        this.init();
       }
-    });
-  };
 
-}));
+      Plugin.prototype.init = function() {
+        var eq, self, tabs;
+        if (!this.options.displayTabs) {
+          this.removeTabs();
+          return;
+        }
+        this.setTabsPosition(this.tabLocationClassName[this.options.tabLocation]);
+        if (this.options.pinPanelIntro) {
+          this.pinPanels(this.el);
+        }
+        tabs = this.getTabs();
+        if (!tabs.hasClass('active')) {
+          tabs.eq(0).addClass('active');
+        }
+        tabs.eq(tabs.length - 1).addClass('last');
+        self = this;
+        eq = void 0;
+        return tabs.on('click', function(e) {
+          e.preventDefault();
+          eq = $(this).index();
+          self.selectTab(eq);
+          return self.selectPanel(eq);
+        });
+      };
+
+      Plugin.prototype.setTabsPosition = function(pos) {
+        return this.el.addClass(pos);
+      };
+
+      Plugin.prototype.getTabs = function() {
+        if (!this.tabs) {
+          this.tabs = this.el.find('.contentTabsNav').find('li');
+        }
+        return this.tabs;
+      };
+
+      Plugin.prototype.selectTab = function(eq) {
+        return this.getTabs().removeClass('active').eq(eq).addClass('active');
+      };
+
+      Plugin.prototype.removeTabs = function() {
+        this.el.addClass('tabsNone');
+        return this.getTabs().remove();
+      };
+
+      Plugin.prototype.getPanels = function() {
+        if (!this.panels) {
+          this.panels = this.el.find('.contentTabsPanel');
+        }
+        return this.panels;
+      };
+
+      Plugin.prototype.selectPanel = function(eq) {
+        return this.getPanels().hide().eq(eq).show();
+      };
+
+      Plugin.prototype.pinPanels = function() {
+        var $this, sectionsToPin;
+        sectionsToPin = void 0;
+        $this = void 0;
+        this.el.addClass('pinPanelIntro');
+        sectionsToPin = this.el.find('.contentTabsPanelIntro');
+        return sectionsToPin.each(function() {
+          $this = $(this);
+          return $this.insertBefore($this.parent());
+        });
+      };
+
+      return Plugin;
+
+    })();
+    $.fn[pluginName] = function(options) {
+      return this.each(function() {
+        if (!$.data(this, 'plugin_#{pluginName}')) {
+          $.data(this, 'plugin_#{pluginName}', new Plugin(this, options));
+        }
+      });
+    };
+  });
+
+}).call(this);

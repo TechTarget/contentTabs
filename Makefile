@@ -21,6 +21,9 @@ endef
 
 default:
 
+	@echo "* compiling coffeescript..."
+	@coffee -p ${SCRIPT_NAME}.coffee > ${SCRIPT_NAME}.js
+
 	@echo "* linting..."
 	@jshint ${SCRIPT_NAME}.js --show-non-errors
 
