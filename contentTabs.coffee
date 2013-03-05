@@ -30,10 +30,10 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
   class Plugin
 
     constructor: (@element, options) ->
+      @el = $(@element)
       @options = $.extend({}, defaults, options)
       @_defaults = defaults
       @_name = pluginName
-      @el = $(@element)
       @tabs = null
       @panels = null
       @tabLocationClassName =

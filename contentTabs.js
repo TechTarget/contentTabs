@@ -28,10 +28,10 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
 
       function Plugin(element, options) {
         this.element = element;
+        this.el = $(this.element);
         this.options = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = pluginName;
-        this.el = $(this.element);
         this.tabs = null;
         this.panels = null;
         this.tabLocationClassName = {
