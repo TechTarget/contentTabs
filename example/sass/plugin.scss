@@ -1,0 +1,65 @@
+// .contentTabsPanelContent { background-color: pink;  }
+// .contentTabsPanelIntro { border: 3px dashed red;  }
+
+// .contentTabsPanel:nth-child(1) { background-color: red; }
+// .contentTabsPanel:nth-child(2) { background-color: blue; }
+// .contentTabsPanel:nth-child(3) { background-color: green; }
+// .contentTabsPanel:nth-child(4) { background-color: orange; }
+// .contentTabsPanel:nth-child(5) { background-color: purple; }
+
+
+/* content tabs plugin styles */
+.contentTabs { border: 1px solid #ccc; overflow: hidden; margin: 0 0 25px; position: relative; }
+.contentTabsNav { background-color: #fafafa; position: relative; }
+.contentTabsNav ul { background-color: #fff; margin: 0 !important; padding: 0 !important; list-style: none; }
+.contentTabsNav li { border-bottom: 1px solid #ccc; }
+.contentTabsNav li:hover { background-color: #d4e9f2; }
+.contentTabsNav li a { color: #000 !important; display: block; text-transform: uppercase; padding: 10px; max-height: 38px; }
+.contentTabsNav li a:hover { text-decoration: none !important; }
+.contentTabsNav li.active a { color: #fff !important; background-color: #0099d8 !important; border-bottom: none; position: relative; }
+.contentTabsPanel { display: none; padding: 10px; color: #4c4d4f; height: 450px; overflow-y: scroll; overflow-x: hidden; }
+.contentTabsPanel:first-child { display: block; }
+.contentTabsPanelIntroGraphic { border: 1px solid #ccc !important; float: right; margin: 0 0 10px 10px; }
+.contentTabsPanel p { margin: 0 0 10px !important; }
+.contentTabsPanel h3 { font-size: 16px !important; margin: 0 0 5px !important; }
+.tabsVerticalLeft .contentTabsNav, .tabsVerticalRight .contentTabsNav { width: 180px; height: 470px; }
+.tabsVerticalLeft .contentTabsNav li.active a:after,
+.tabsVerticalRight .contentTabsNav li.active a:before,
+.tabsHorizontalTop .contentTabsNav li.active a:after,
+.tabsHorizontalBottom .contentTabsNav li.active a:before { content: ''; position: absolute; display: block; height: 0; width: 0; }
+.tabsVerticalLeft .contentTabsNav { float: left; border-right: 1px solid #ccc; }
+.tabsVerticalLeft .contentTabsNav li.active a:after { top: 0; right: -12px; border-top: 21px solid transparent; border-left: 12px solid #0099d8; border-bottom: 21px solid transparent; }
+.tabsVerticalLeft .contentTabsPanelCollection { float: right; width: 740px; }
+.tabsVerticalRight .contentTabsNav { float: right; border-left: 1px solid #ccc; }
+.tabsVerticalRight .contentTabsNav li.active a:before { top: 0; left: -12px; border-top: 21px solid transparent; border-right: 12px solid #0099d8; border-bottom: 21px solid transparent; }
+.tabsVerticalRight .contentTabsPanelCollection { float: left; width: 740px; }
+.tabsHorizontalTop .contentTabsNav ul { border-bottom: 1px solid #ccc; margin-bottom: 20px !important; text-align: center; }
+.tabsHorizontalTop .contentTabsNav li, .tabsHorizontalBottom .contentTabsNav li { display: inline-block; border-right: 1px solid #ccc; border-bottom: none; }
+.tabsHorizontalTop .contentTabsNav li:first-child, .tabsHorizontalBottom .contentTabsNav li:first-child { border-left: 1px solid #ccc; }
+.tabsHorizontalTop .contentTabsNav li.active a:after { top: 38px; left: 33%; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #0099d8; }
+.tabsHorizontalBottom .contentTabsNav { position: relative; top: 475px; }
+.tabsHorizontalBottom .contentTabsNav ul { border-top: 1px solid #ccc; margin-top: 20px !important; text-align: center; }
+.tabsHorizontalBottom .contentTabsNav li:first-child { border-left: 1px solid #ccc; }
+.tabsHorizontalBottom .contentTabsNav li.active a:before { top: -10px; left: 33%; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #0099d8; }
+.tabsHorizontalBottom .contentTabsPanelCollection { margin-top: -60px; margin-bottom: 60px; }
+.tabsNone .contentTabsNav { display: none; }
+.pinPanelIntro .contentTabsPanel { overflow-y: hidden; overflow-x: hidden; }
+.pinPanelIntro .contentTabsPanelContent { height: 280px; overflow-y: scroll; overflow-x: hidden; }
+.pinPanelIntro .contentTabsPanelIntro { height: 150px; padding: 0 0 10px; margin: 0 0 15px; border-bottom: 1px solid #ddd; overflow: hidden; }
+
+/* copy these along wih content tabs since they're used in the panel views */
+.mediaBlock, .mediaBlockContent { overflow: hidden; _overflow: visible; zoom: 1; }
+.mediaBlock img { float: left; margin-right: 10px; display: block; }
+.oneColList, .twoColGrid { clear: both; }
+.oneColList > ul, .twoColGrid > ul { clear: both; margin: 0 !important; padding: 0 !important; list-style: none; overflow: hidden; }
+.twoColGrid ul > li { clear: left; border-top: 1px solid #ddd; overflow: hidden; }
+.oneColList ul > li:first-child, .twoColGrid ul > li:first-child { border: none; margin-top: 0; }
+.twoColGrid .gridItem { width: 46%; float: left; margin: 15px 10px; }
+.twoColGrid .gridItem:first-child { border-right: 1px solid #ddd; padding-right: 10px; }
+.twoColGrid .gridItem p { margin: 10px 0 0 !important; line-height: 1.1 !important; }
+.twoColGrid .mediaBlockImage { width: 80px; height: 100px; }
+.oneColList { margin: -10px 0 0;}
+.oneColList li { border-top: 1px solid #ddd; margin: 15px 0 5px; padding: 15px 0 0; }
+.oneColList h4 { font-size: 16px; margin: 0 0 5px !important; }
+.oneColList p { margin: 0 0 5px !important; }
+.contentTabsCaption { font-size: 26px; margin: 0 0 5px !important; }

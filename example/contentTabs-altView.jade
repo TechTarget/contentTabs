@@ -8,21 +8,16 @@
   .contentTabsPanelCollection
     each tab, index in tabs
       .contentTabsPanel
-        .contentTabsPanelContent.twoColGrid
+        .contentTabsPanelContent.oneColList
           .contentTabsPanelIntro
             h3 Panel for tab "#{tab}" (#{index+1} of #{tabs.length} panels)
             p
               img.contentTabsPanelIntroGraphic(data-src='example.com/#{intoGraphicSize}/mo', alt='')
               @Html.Ipsum.p(1, 8)
           ul
-            - for (var i = 0; i < 3; ++i) {
+            - for (var i = 0; i < 10; ++i) {
               li
-                - for (var j = 0; j < 2; ++j) {
-                  .mediaBlock.gridItem
-                    img.mediaBlock(data-src='example.com/#{graphicSize}/mo', alt='')
-                    .mediaBlockContent
-                      h4: a(href='replaceMe') @Html.Ipsum.h4(5)
-                      @Html.Ipsum.p(1, 4)
-                      p: a.viewNow(href='replaceMe') View Now
-                - }
+                h4: a(href='replaceMe') @Html.Ipsum.h4(5)
+                @Html.Ipsum.p(1, 8)
+                p: a.viewNow(href='replaceMe') View Now
             - }
