@@ -68,13 +68,12 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
       tabs.eq(tabs.length - 1).addClass 'last'
 
       # bind click handler to tabs
-      self = this
       eq = undefined
-      tabs.on 'click', (e) ->
+      tabs.on 'click', (e) =>
         e.preventDefault()
-        eq = $(this).index()
-        self.selectTab eq
-        self.selectPanel eq
+        eq = $(e.currentTarget).index()
+        @selectTab eq
+        @selectPanel eq
 
     # adds class to container
     setTabsPosition: (pos) ->

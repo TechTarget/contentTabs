@@ -5,7 +5,6 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
 
 
 (function() {
-
   (function(factory) {
     if (typeof define === 'function' && define.amd) {
       return define(['jquery'], factory);
@@ -15,6 +14,7 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
   })(function($) {
     'use strict';
     var Plugin, defaults, pluginName;
+
     pluginName = 'contentTabs';
     defaults = {
       displayTabs: true,
@@ -25,7 +25,6 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
       mouseEvent: 'click'
     };
     Plugin = (function() {
-
       function Plugin(element, options) {
         this.element = element;
         this.el = $(this.element);
@@ -44,7 +43,9 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
       }
 
       Plugin.prototype.init = function() {
-        var eq, self, tabs;
+        var eq, tabs,
+          _this = this;
+
         if (!this.options.displayTabs) {
           this.removeTabs();
           return;
@@ -58,13 +59,12 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
           tabs.eq(0).addClass('active');
         }
         tabs.eq(tabs.length - 1).addClass('last');
-        self = this;
         eq = void 0;
         return tabs.on('click', function(e) {
           e.preventDefault();
-          eq = $(this).index();
-          self.selectTab(eq);
-          return self.selectPanel(eq);
+          eq = $(e.currentTarget).index();
+          _this.selectTab(eq);
+          return _this.selectPanel(eq);
         });
       };
 
@@ -101,6 +101,7 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
 
       Plugin.prototype.pinPanels = function() {
         var $this, sectionsToPin;
+
         sectionsToPin = void 0;
         $this = void 0;
         this.el.addClass('pinPanelIntro');
