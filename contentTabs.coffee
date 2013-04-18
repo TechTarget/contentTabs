@@ -62,7 +62,7 @@ Copyright (c) 2013 | Licensed under the MIT license - http://www.opensource.org/
       tabs = @getTabs()
 
       # apply 'active' class to first tab if there's no active class
-      tabs.eq(0).addClass 'active'  unless tabs.hasClass('active')
+      tabs.eq(0).addClass 'active' unless tabs.hasClass('active')
 
       # apply 'last' class to last tab in collection (for IE)
       tabs.eq(tabs.length - 1).addClass 'last'

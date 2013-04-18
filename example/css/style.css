@@ -41,12 +41,12 @@ audio, canvas, video {
   padding: 0;
   height: 1px;
   border: 0;
-  border-top: 1px solid #cccccc; }
+  border-top: 1px solid #ccc; }
 
 #micrositeContainer pre, #micrositeContainer code, #micrositeContainer kbd, #micrositeContainer samp {
   font-size: 1em;
   font-family: monospace, serif;
-  _font-family: "courier new", monospace; }
+  _font-family: 'courier new', monospace; }
 
 #micrositeContainer pre {
   white-space: pre-wrap;
@@ -162,7 +162,7 @@ a:focus {
 
 /* content tabs plugin styles */
 .contentTabs {
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   overflow: hidden;
   margin: 0 0 25px;
   position: relative; }
@@ -178,13 +178,13 @@ a:focus {
   list-style: none; }
 
 .contentTabsNav li {
-  border-bottom: 1px solid #cccccc; }
+  border-bottom: 1px solid #ccc; }
 
 .contentTabsNav li:hover {
   background-color: #d4e9f2; }
 
 .contentTabsNav li a {
-  color: black !important;
+  color: #000 !important;
   display: block;
   text-transform: uppercase;
   padding: 10px;
@@ -194,7 +194,7 @@ a:focus {
   text-decoration: none !important; }
 
 .contentTabsNav li.active a {
-  color: white !important;
+  color: #fff !important;
   background-color: #0099d8 !important;
   border-bottom: none;
   position: relative; }
@@ -211,7 +211,7 @@ a:focus {
   display: block; }
 
 .contentTabsPanelIntroGraphic {
-  border: 1px solid #cccccc !important;
+  border: 1px solid #ccc !important;
   float: right;
   margin: 0 0 10px 10px; }
 
@@ -238,7 +238,7 @@ a:focus {
 
 .tabsVerticalLeft .contentTabsNav {
   float: left;
-  border-right: 1px solid #cccccc; }
+  border-right: 1px solid #ccc; }
 
 .tabsVerticalLeft .contentTabsNav li.active a:after {
   top: 0;
@@ -253,7 +253,7 @@ a:focus {
 
 .tabsVerticalRight .contentTabsNav {
   float: right;
-  border-left: 1px solid #cccccc; }
+  border-left: 1px solid #ccc; }
 
 .tabsVerticalRight .contentTabsNav li.active a:before {
   top: 0;
@@ -267,17 +267,17 @@ a:focus {
   width: 740px; }
 
 .tabsHorizontalTop .contentTabsNav ul {
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 20px !important;
   text-align: center; }
 
 .tabsHorizontalTop .contentTabsNav li, .tabsHorizontalBottom .contentTabsNav li {
   display: inline-block;
-  border-right: 1px solid #cccccc;
+  border-right: 1px solid #ccc;
   border-bottom: none; }
 
 .tabsHorizontalTop .contentTabsNav li:first-child, .tabsHorizontalBottom .contentTabsNav li:first-child {
-  border-left: 1px solid #cccccc; }
+  border-left: 1px solid #ccc; }
 
 .tabsHorizontalTop .contentTabsNav li.active a:after {
   top: 38px;
@@ -291,12 +291,12 @@ a:focus {
   top: 475px; }
 
 .tabsHorizontalBottom .contentTabsNav ul {
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid #ccc;
   margin-top: 20px !important;
   text-align: center; }
 
 .tabsHorizontalBottom .contentTabsNav li:first-child {
-  border-left: 1px solid #cccccc; }
+  border-left: 1px solid #ccc; }
 
 .tabsHorizontalBottom .contentTabsNav li.active a:before {
   top: -10px;
@@ -325,7 +325,7 @@ a:focus {
   height: 150px;
   padding: 0 0 10px;
   margin: 0 0 15px;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
   overflow: hidden; }
 
 /* copy these along wih content tabs since they're used in the panel views */
@@ -351,7 +351,7 @@ a:focus {
 
 .twoColGrid ul > li {
   clear: left;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
   overflow: hidden; }
 
 .oneColList ul > li:first-child, .twoColGrid ul > li:first-child {
@@ -364,7 +364,7 @@ a:focus {
   margin: 15px 10px; }
 
 .twoColGrid .gridItem:first-child {
-  border-right: 1px solid #dddddd;
+  border-right: 1px solid #ddd;
   padding-right: 10px; }
 
 .twoColGrid .gridItem p {
@@ -379,7 +379,7 @@ a:focus {
   margin: -10px 0 0; }
 
 .oneColList li {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
   margin: 15px 0 5px;
   padding: 15px 0 0; }
 
