@@ -5,7 +5,7 @@
 	"newcap": true,
 	"noarg": true,
 	"noempty": true,
-	"strict": false,
+	"strict": true,
 	"trailing": true,
 	"undef": true,
 	"browser": true,
@@ -13,5 +13,7 @@
   "predef" : {
     "console" : true,
     "define" : true
-  }
+  },
+  "boss": true,
+  "eqeqeq": true
 }

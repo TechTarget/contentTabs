@@ -1,0 +1,150 @@
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/box-shadow";
+
+// component customization
+$component-border-color: #444;
+$player-height: 360px;
+$player-width: 640px;
+$player-background-color: #000;
+$playlist-height: $player-height + 20px;
+$playlist-width: 280px;
+$playlist-background-color: #ececec;
+$playlist-header-color: #fff;
+$playlist-header-background-color: #444;
+$playlist-header-size: 16px;
+$playlist-item-size: 12px;
+$playlist-item-color: #000;
+$playlist-item-background-color: #fff;
+$playlist-item-border-color: #ccc;
+$playlist-item-active-border-color: #2ba6cb;
+
+// featured video component
+.featuredVideo {
+  border: 1px solid $component-border-color;
+  margin: 0 0 25px;
+  padding: 10px 0 10px 10px;
+  position: relative;
+  @include clearfix;
+
+  .featuredVideoPlayer {
+    background-color: $player-background-color;
+    float: left;
+    height: $player-height;
+    position: relative;
+    width: $player-width;
+  }
+
+  &.noPlaylist .featuredVideoPlayer {
+    width: 920px;
+    height: 520px;
+  }
+
+  .featuredVideoPlaylist {
+    background-color: $playlist-background-color;
+    float: right;
+    height: $playlist-height;
+    margin: -10px 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    visibility: hidden;
+    width: $playlist-width;
+
+    .featuredVideoPlaylistHeader {
+      color: $playlist-header-color;
+      background-color: $playlist-header-background-color;
+      font-size: $playlist-header-size;
+      font-weight: normal;
+      padding: 3px 8px !important;
+      margin: 0 !important;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0 !important;
+      margin: 3px 0 3px !important;
+
+      li {
+        cursor: pointer;
+        background-color: $playlist-item-background-color;
+        min-height: 66px;
+        margin-bottom: 2px;
+        border-left: 6px solid $playlist-item-border-color;
+        &.active { border-left: 6px solid $playlist-item-active-border-color; }
+      }
+
+    }
+
+    .featuredVideoTitle {
+      font-size: $playlist-item-size;
+      margin: 0 !important;
+      line-height: 1.3 !important;
+      color: $playlist-item-color;
+      font-weight: normal;
+    }
+
+    .mediaBlock, .mediaBlockContent {
+        overflow: hidden;
+        _overflow: visible;
+        *zoom: 1;
+    }
+
+    .mediaBlock {
+      padding: 8px 5px;
+      margin: 1px 2px 0;
+
+      img {
+        float: left;
+        margin-right: 10px;
+        display: block;
+        width: 100px;
+        height: 50px;
+      }
+
+    }
+
+    .featuredVideoSummary {
+      display: none;
+    }
+
+  }
+
+  .featuredVideoPlaylistTooltip {
+    display: none;
+    z-index: 1;
+    border: 1px solid #444;
+    background-color: #fff;
+    position: absolute;
+    right: 288px;
+    top: 0;
+    min-height: 48px;
+    width: 250px;
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 16px;
+    @include single-box-shadow(rgba(0, 0, 0, .5), 0, 0, 20px)
+  }
+
+  .featuredVideoPlaylistTooltip:after{
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    right: -8px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #444;
+  }
+
+  .featuredVideoPlayerOverlay {
+    height: 360px;
+    width: 640px;
+    background-color: #ccc;
+    opacity: .5;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+}

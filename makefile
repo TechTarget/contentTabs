@@ -1,3 +1,5 @@
+# Required npm modules: uglifyjs (2.2.x) & coffeelint (0.5.x)
+
 SCRIPT_NAME = contentTabs
 FILESIZE_MAX = 1000
 FILESIZE_GZIP = `gzip -c ${SCRIPT_NAME}.min.js | wc -c`
@@ -22,13 +24,13 @@ default:
 	@jade -P ./example/index.jade
 
 	@echo "* compiling sass..."
-	@sass ./example/sass/style.scss ./example/css/style.css
+	@sass --scss --compass --style expanded ./example/sass/style.scss ./example/css/style.css
+
+	@echo "* linting coffeescript..."
+	@coffeelint ${SCRIPT_NAME}.coffee
 
 	@echo "* compiling coffeescript..."
-	@coffee -p ${SCRIPT_NAME}.coffee > ${SCRIPT_NAME}.js
-
-	@echo "* linting..."
-	@jshint ${SCRIPT_NAME}.js --show-non-errors
+	@coffee -p -l ${SCRIPT_NAME}.coffee > ${SCRIPT_NAME}.js
 
 	@echo "* minifying..."
 	@uglifyjs ${SCRIPT_NAME}.js \
