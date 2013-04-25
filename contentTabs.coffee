@@ -28,7 +28,7 @@ http://www.opensource.org/licenses/mit-license.php
     tabActiveClass: 'active' # any string
 
   # plugin constructor
-  class Plugin
+  class Tabs
 
     constructor: (@element, options) ->
       @el = $(@element)
@@ -43,10 +43,10 @@ http://www.opensource.org/licenses/mit-license.php
         top: 'tabsHorizontalTop'
         bottom: 'tabsHorizontalBottom'
       @activeTab = null
+      @hashObject = null
       @init()
 
     init: ->
-
       # don't display any tabs if disabled in options
       unless @options.displayTabs
         @removeTabs()
@@ -79,40 +79,47 @@ http://www.opensource.org/licenses/mit-license.php
         eq = $(e.currentTarget).index()
         @updateState(eq)
 
-    # pass in a url or it will default to url from current window
-    getArgsFromUrl: (url) ->
-      url = url || window.location.href
-      args = {}
-      params = url.slice(url.indexOf('#') + 1).split('&')
-      for item in params
-        param = item.split('=')
-        if param[0] is url
-          return null # if there are no hashes return null
-        if (param.length > 1)
-          args[param[0]] = param[1]
-        else
-          args[param[0]] = undefined
-      args
-
-    # updates url hash with tab identifier
-    updateUrlHash: (eq) ->
-      window.location.hash = @options.tabStateKey + '=' + eq
-
-    # returns number of properties of an object
-    getPropertyCount: (obj) ->
-      count = 0
-      for key of obj
-        count++ if obj.hasOwnProperty(key)
-      count
-
     # checks if there's a hash for tab state maintenance
     # if there is, set activeTab var to hash state
     getStateFromHash: ->
-      args = @getArgsFromUrl()
-      return null if !args
-      state = args[@options.tabStateKey] ? null
+      @hashObject = @getHashObject()
+      return null if !@hashObject
+      state = @hashObject[@options.tabStateKey] ? null
       return null if !state
-      @activeTab = args[@options.tabStateKey]
+      @activeTab = @hashObject[@options.tabStateKey]
+
+    # returns null if no hashes, otherwise returns object created from hash
+    getHashObject: ->
+      hash = @getUrlHash()
+      return null if !hash
+      args = {}
+      arr = hash.split('&')
+      for item in arr
+        arg = item.split('=')
+        if (arg.length > 1)
+          args[arg[0]] = arg[1]
+        else
+          args[arg[0]] = undefined
+      args
+
+    # converts the hash object into a string for the url hash
+    buildHashObject: () ->
+      $.param(@hashObject)
+
+    # updates the hash based on
+    updateHash: (eq) ->
+      eq += '' # convert to string
+      @hashObject = {} if !@hashObject # if @hashObject is null, create it
+      @hashObject[@options.tabStateKey] = eq
+      @setUrlHash(@buildHashObject())
+
+    # caches the hash from the current window and returns an object of the hash
+    getUrlHash: ->
+      if window.location.hash then window.location.hash.substring(1) else null
+
+    # updates url hash with tab identifier
+    setUrlHash: (hash) ->
+      window.location.hash = hash
 
     # adds class to container
     setTabsPosition: (pos) ->
@@ -123,22 +130,19 @@ http://www.opensource.org/licenses/mit-license.php
       @activeTab = eq
       @selectTab(eq)
       @selectPanel(eq)
-      return
 
     # returns jq collection of tab elements
     # will return from cache if called previously
     getTabs: ->
-      @tabs = @el.find('.contentTabsNav').find('li') unless @tabs
-      @tabs
+      @el.find('.contentTabsNav').find('li') unless @tabs
 
     # 'selects' a tab by applying 'active' class to tab element
     selectTab: (eq) ->
-      @updateUrlHash(eq) if (@options.maintainTabState)
+      @updateHash(eq) if (@options.maintainTabState)
       @getTabs()
         .removeClass(@options.tabActiveClass)
         .eq(eq)
         .addClass(@options.tabActiveClass)
-      return
 
     # removes tab elements from dom
     removeTabs: ->
@@ -148,8 +152,7 @@ http://www.opensource.org/licenses/mit-license.php
     # returns jquery collection of panel elements
     # will return from cache if called previously
     getPanels: ->
-      @panels = @el.find('.contentTabsPanel') unless @panels
-      @panels
+      @el.find('.contentTabsPanel') unless @panels
 
     # 'selects' a panel by hiding every panel and then showing the
     # panel from panel collection that matches index
@@ -158,7 +161,6 @@ http://www.opensource.org/licenses/mit-license.php
         .hide()
         .eq(eq)
         .show()
-      return
 
     # adds class to container & moves .contentTabsPanelIntro divs
     # outside their respective parents in the dom
@@ -170,12 +172,11 @@ http://www.opensource.org/licenses/mit-license.php
       sectionsToPin.each ->
         $this = $(this)
         $this.insertBefore( $this.parent() )
-      return
 
   # wrapper around the constructor that prevents multiple instantiations
   $.fn[pluginName] = (options) ->
     @each ->
       if !$.data(@, 'plugin_#{pluginName}')
-        $.data(@, 'plugin_#{pluginName}', new Plugin(@, options))
+        $.data(@, 'plugin_#{pluginName}', new Tabs(@, options))
       return
   return

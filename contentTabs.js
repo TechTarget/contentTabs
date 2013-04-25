@@ -18,7 +18,7 @@ http://www.opensource.org/licenses/mit-license.php
   })(function($) {
     'use strict';
 
-    var Plugin, defaults, pluginName;
+    var Tabs, defaults, pluginName;
     pluginName = 'contentTabs';
     defaults = {
       displayTabs: true,
@@ -28,9 +28,9 @@ http://www.opensource.org/licenses/mit-license.php
       tabLocation: 'left',
       tabActiveClass: 'active'
     };
-    Plugin = (function() {
+    Tabs = (function() {
 
-      function Plugin(element, options) {
+      function Tabs(element, options) {
         this.element = element;
         this.el = $(this.element);
         this.options = $.extend({}, defaults, options);
@@ -45,10 +45,11 @@ http://www.opensource.org/licenses/mit-license.php
           bottom: 'tabsHorizontalBottom'
         };
         this.activeTab = null;
+        this.hashObject = null;
         this.init();
       }
 
-      Plugin.prototype.init = function() {
+      Tabs.prototype.init = function() {
         var eq, tabs,
           _this = this;
         if (!this.options.displayTabs) {
@@ -75,113 +76,121 @@ http://www.opensource.org/licenses/mit-license.php
         });
       };
 
-      Plugin.prototype.getArgsFromUrl = function(url) {
-        var args, item, param, params, _i, _len;
-        url = url || window.location.href;
+      Tabs.prototype.getStateFromHash = function() {
+        var state, _ref;
+        this.hashObject = this.getHashObject();
+        if (!this.hashObject) {
+          return null;
+        }
+        state = (_ref = this.hashObject[this.options.tabStateKey]) != null ? _ref : null;
+        if (!state) {
+          return null;
+        }
+        return this.activeTab = this.hashObject[this.options.tabStateKey];
+      };
+
+      Tabs.prototype.getHashObject = function() {
+        var arg, args, arr, hash, item, _i, _len;
+        hash = this.getUrlHash();
+        if (!hash) {
+          return null;
+        }
         args = {};
-        params = url.slice(url.indexOf('#') + 1).split('&');
-        for (_i = 0, _len = params.length; _i < _len; _i++) {
-          item = params[_i];
-          param = item.split('=');
-          if (param[0] === url) {
-            return null;
-          }
-          if (param.length > 1) {
-            args[param[0]] = param[1];
+        arr = hash.split('&');
+        for (_i = 0, _len = arr.length; _i < _len; _i++) {
+          item = arr[_i];
+          arg = item.split('=');
+          if (arg.length > 1) {
+            args[arg[0]] = arg[1];
           } else {
-            args[param[0]] = void 0;
+            args[arg[0]] = void 0;
           }
         }
         return args;
       };
 
-      Plugin.prototype.updateUrlHash = function(eq) {
-        return window.location.hash = this.options.tabStateKey + '=' + eq;
+      Tabs.prototype.buildHashObject = function() {
+        return $.param(this.hashObject);
       };
 
-      Plugin.prototype.getPropertyCount = function(obj) {
-        var count, key;
-        count = 0;
-        for (key in obj) {
-          if (obj.hasOwnProperty(key)) {
-            count++;
-          }
+      Tabs.prototype.updateHash = function(eq) {
+        eq += '';
+        if (!this.hashObject) {
+          this.hashObject = {};
         }
-        return count;
+        this.hashObject[this.options.tabStateKey] = eq;
+        return this.setUrlHash(this.buildHashObject());
       };
 
-      Plugin.prototype.getStateFromHash = function() {
-        var args, state, _ref;
-        args = this.getArgsFromUrl();
-        if (!args) {
+      Tabs.prototype.getUrlHash = function() {
+        if (window.location.hash) {
+          return window.location.hash.substring(1);
+        } else {
           return null;
         }
-        state = (_ref = args[this.options.tabStateKey]) != null ? _ref : null;
-        if (!state) {
-          return null;
-        }
-        return this.activeTab = args[this.options.tabStateKey];
       };
 
-      Plugin.prototype.setTabsPosition = function(pos) {
+      Tabs.prototype.setUrlHash = function(hash) {
+        return window.location.hash = hash;
+      };
+
+      Tabs.prototype.setTabsPosition = function(pos) {
         return this.el.addClass(pos);
       };
 
-      Plugin.prototype.updateState = function(eq) {
+      Tabs.prototype.updateState = function(eq) {
         this.activeTab = eq;
         this.selectTab(eq);
-        this.selectPanel(eq);
+        return this.selectPanel(eq);
       };
 
-      Plugin.prototype.getTabs = function() {
+      Tabs.prototype.getTabs = function() {
         if (!this.tabs) {
-          this.tabs = this.el.find('.contentTabsNav').find('li');
+          return this.el.find('.contentTabsNav').find('li');
         }
-        return this.tabs;
       };
 
-      Plugin.prototype.selectTab = function(eq) {
+      Tabs.prototype.selectTab = function(eq) {
         if (this.options.maintainTabState) {
-          this.updateUrlHash(eq);
+          this.updateHash(eq);
         }
-        this.getTabs().removeClass(this.options.tabActiveClass).eq(eq).addClass(this.options.tabActiveClass);
+        return this.getTabs().removeClass(this.options.tabActiveClass).eq(eq).addClass(this.options.tabActiveClass);
       };
 
-      Plugin.prototype.removeTabs = function() {
+      Tabs.prototype.removeTabs = function() {
         this.el.addClass('tabsNone');
         return this.getTabs().remove();
       };
 
-      Plugin.prototype.getPanels = function() {
+      Tabs.prototype.getPanels = function() {
         if (!this.panels) {
-          this.panels = this.el.find('.contentTabsPanel');
+          return this.el.find('.contentTabsPanel');
         }
-        return this.panels;
       };
 
-      Plugin.prototype.selectPanel = function(eq) {
-        this.getPanels().hide().eq(eq).show();
+      Tabs.prototype.selectPanel = function(eq) {
+        return this.getPanels().hide().eq(eq).show();
       };
 
-      Plugin.prototype.pinPanels = function() {
+      Tabs.prototype.pinPanels = function() {
         var $this, sectionsToPin;
         sectionsToPin = void 0;
         $this = void 0;
         this.el.addClass('pinPanelIntro');
         sectionsToPin = this.el.find('.contentTabsPanelIntro');
-        sectionsToPin.each(function() {
+        return sectionsToPin.each(function() {
           $this = $(this);
           return $this.insertBefore($this.parent());
         });
       };
 
-      return Plugin;
+      return Tabs;
 
     })();
     $.fn[pluginName] = function(options) {
       return this.each(function() {
         if (!$.data(this, 'plugin_#{pluginName}')) {
-          $.data(this, 'plugin_#{pluginName}', new Plugin(this, options));
+          $.data(this, 'plugin_#{pluginName}', new Tabs(this, options));
         }
       });
     };

@@ -1,4 +1,4 @@
-# Required npm modules: uglifyjs (2.2.x) & coffeelint (0.5.x)
+# Required npm modules: jshint (1.1.x), uglifyjs (2.2.x) & coffeelint (0.5.x)
 
 SCRIPT_NAME = contentTabs
 FILESIZE_MAX = 1000
@@ -31,6 +31,9 @@ default:
 
 	@echo "* compiling coffeescript..."
 	@coffee -p -l ${SCRIPT_NAME}.coffee > ${SCRIPT_NAME}.js
+
+	# @echo "* linting javascript..."
+	# @jshint ${SCRIPT_NAME}.js --show-non-errors
 
 	@echo "* minifying..."
 	@uglifyjs ${SCRIPT_NAME}.js \
