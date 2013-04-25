@@ -19,7 +19,8 @@ http://www.opensource.org/licenses/mit-license.php
     pluginName = 'contentTabs';
     defaults = {
       displayTabs: true,
-      maintainTabState: false,
+      maintainState: false,
+      indexOfOpenPanel: 0,
       pinPanelIntro: false,
       tabLocation: 'left',
       tabActiveClass: 'active'
@@ -39,21 +40,21 @@ http://www.opensource.org/licenses/mit-license.php
           top: 'tabsHorizontalTop',
           bottom: 'tabsHorizontalBottom'
         };
-        this.activeTab = null;
-        this.tabStateKey = 'ctab';
+        this.activeTab = this.options.indexOfOpenPanel;
+        this.stateKey = 'tabState';
         this.hashObject = null;
         this.init();
       }
 
       Tabs.prototype.init = function() {
-        var eq, tabs,
+        var tabs,
           _this = this;
 
         if (!this.options.displayTabs) {
           this.removeTabs();
           return;
         }
-        if (this.options.maintainTabState && (this.getStateFromHash() != null)) {
+        if (this.options.maintainState && (this.getStateFromHash() != null)) {
           this.updateState(this.activeTab);
         }
         this.setTabsPosition(this.tabLocationClassName[this.options.tabLocation]);
@@ -62,14 +63,12 @@ http://www.opensource.org/licenses/mit-license.php
         }
         tabs = this.getTabs();
         if (!tabs.hasClass(this.options.tabActiveClass)) {
-          tabs.eq(0).addClass(this.options.tabActiveClass);
+          tabs.eq(this.activeTab).addClass(this.options.tabActiveClass);
         }
         tabs.eq(tabs.length - 1).addClass('last');
-        eq = void 0;
         return tabs.on('click', function(e) {
           e.preventDefault();
-          eq = $(e.currentTarget).index();
-          return _this.updateState(eq);
+          return _this.updateState($(e.currentTarget).index());
         });
       };
 
@@ -80,11 +79,11 @@ http://www.opensource.org/licenses/mit-license.php
         if (!this.hashObject) {
           return null;
         }
-        state = (_ref = this.hashObject[this.tabStateKey]) != null ? _ref : null;
+        state = (_ref = this.hashObject[this.stateKey]) != null ? _ref : null;
         if (!state) {
           return null;
         }
-        return this.activeTab = this.hashObject[this.tabStateKey];
+        return this.activeTab = this.hashObject[this.stateKey];
       };
 
       Tabs.prototype.getHashObject = function() {
@@ -114,13 +113,12 @@ http://www.opensource.org/licenses/mit-license.php
 
       Tabs.prototype.updateHash = function(eq) {
         eq += '';
+        this.hashObject = this.getHashObject();
         if (!this.hashObject) {
           this.hashObject = {};
         }
-        this.hashObject[this.tabStateKey] = eq;
-        this.setUrlHash(this.buildHashObject());
-        console.log('content tabs update: ');
-        return console.log(this.hashObject);
+        this.hashObject[this.stateKey] = eq;
+        return this.setUrlHash(this.buildHashObject());
       };
 
       Tabs.prototype.getUrlHash = function() {
@@ -141,32 +139,34 @@ http://www.opensource.org/licenses/mit-license.php
         return this.selectPanel(eq);
       };
 
+      Tabs.prototype.removeTabs = function() {
+        this.el.addClass('tabsNone');
+        return this.getTabs().remove();
+      };
+
       Tabs.prototype.setTabsPosition = function(pos) {
         return this.el.addClass(pos);
       };
 
       Tabs.prototype.getTabs = function() {
         if (!this.tabs) {
-          return this.el.find('.contentTabsNav').find('li');
+          this.tabs = this.el.find('.contentTabsNav').find('li');
         }
+        return this.tabs;
       };
 
       Tabs.prototype.selectTab = function(eq) {
-        if (this.options.maintainTabState) {
+        if (this.options.maintainState) {
           this.updateHash(eq);
         }
         return this.getTabs().removeClass(this.options.tabActiveClass).eq(eq).addClass(this.options.tabActiveClass);
       };
 
-      Tabs.prototype.removeTabs = function() {
-        this.el.addClass('tabsNone');
-        return this.getTabs().remove();
-      };
-
       Tabs.prototype.getPanels = function() {
         if (!this.panels) {
-          return this.el.find('.contentTabsPanel');
+          this.panels = this.el.find('.contentTabsPanel');
         }
+        return this.panels;
       };
 
       Tabs.prototype.selectPanel = function(eq) {

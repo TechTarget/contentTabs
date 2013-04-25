@@ -11,6 +11,12 @@ $(document).on('ready', function() {
     tooltipHtml: '<div class="featuredVideoPlaylistTooltip"></div>'
   });
 
+  // init contentAccordion component
+  $('.contentAccordion').contentAccordion({
+    indexOfOpenPanel: 0,
+    maintainState: true
+  });
+
   $('body *').inlineIpsum({token: '@'});
 
   // image placeholders
@@ -28,7 +34,7 @@ $(document).on('ready', function() {
   /* content tabs component */
   $('.contentTabs').eq(0).contentTabs({
     tabLocation: 'top',
-    maintainTabState: true,
+    maintainState: true,
     pinPanelIntro: true
   });
 

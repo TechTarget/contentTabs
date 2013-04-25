@@ -21,7 +21,8 @@ http://www.opensource.org/licenses/mit-license.php
   # default plugin options
   defaults =
     displayTabs: true
-    maintainTabState: false # manages which tab is active through url hashes
+    maintainState: false # manages which tab is active through url hashes
+    indexOfOpenPanel: 0 # can set a default tab/panel to be open
     pinPanelIntro: false # will 'pin' a section of content above scrollable area
     tabLocation: 'left' # left, right, top, bottom
     tabActiveClass: 'active' # any string
@@ -42,8 +43,8 @@ http://www.opensource.org/licenses/mit-license.php
         right: 'tabsVerticalRight'
         top: 'tabsHorizontalTop'
         bottom: 'tabsHorizontalBottom'
-      @activeTab = null
-      @tabStateKey = 'ctab'
+      @activeTab = @options.indexOfOpenPanel
+      @stateKey = 'tabState'
       @hashObject = null
       @init()
 
@@ -56,7 +57,7 @@ http://www.opensource.org/licenses/mit-license.php
         return
 
       # will update the component state if passed via url hash
-      @updateState(@activeTab) if @options.maintainTabState and @getStateFromHash()?
+      @updateState(@activeTab) if @options.maintainState and @getStateFromHash()?
 
       # adds a class to the plugin container to allow the css to determine the
       # position (ie. top, left, etc) of the tabs relative to their panels
@@ -70,17 +71,15 @@ http://www.opensource.org/licenses/mit-license.php
       tabs = @getTabs()
 
       # apply 'active' class to first tab if there's no active class
-      tabs.eq(0).addClass(@options.tabActiveClass) unless tabs.hasClass(@options.tabActiveClass)
+      tabs.eq(@activeTab).addClass(@options.tabActiveClass) unless tabs.hasClass(@options.tabActiveClass)
 
       # apply 'last' class to last tab in collection (for IE)
       tabs.eq(tabs.length - 1).addClass('last')
 
       # bind click handler to tabs
-      eq = undefined
       tabs.on 'click', (e) =>
         e.preventDefault()
-        eq = $(e.currentTarget).index()
-        @updateState(eq)
+        @updateState( $(e.currentTarget).index() )
 
     # checks if there's a hash for tab state maintenance
     # if there is, set activeTab var to hash state
@@ -88,9 +87,9 @@ http://www.opensource.org/licenses/mit-license.php
 
       @hashObject = @getHashObject()
       return null if !@hashObject
-      state = @hashObject[@tabStateKey] ? null
+      state = @hashObject[@stateKey] ? null
       return null if !state
-      @activeTab = @hashObject[@tabStateKey]
+      @activeTab = @hashObject[@stateKey]
 
     # returns null if no hashes, otherwise returns object created from hash
     getHashObject: ->
@@ -112,15 +111,21 @@ http://www.opensource.org/licenses/mit-license.php
 
       $.param(@hashObject)
 
-    # updates the hash based on
+    # updates the cached hash object and then updates url
     updateHash: (eq) ->
 
-      eq += '' # convert to string
-      @hashObject = {} if !@hashObject # if @hashObject is null, create it
-      @hashObject[@tabStateKey] = eq
+      # convert to string
+      eq += ''
+
+      # get fresh hash obj in case another component has altered it
+      @hashObject = @getHashObject()
+
+      # if @hashObject is null, create it
+      @hashObject = {} if !@hashObject
+
+      # update hash
+      @hashObject[@stateKey] = eq
       @setUrlHash(@buildHashObject())
-      console.log 'content tabs update: '
-      console.log @hashObject
 
     # caches the hash from the current window and returns an object of the hash
     getUrlHash: ->
@@ -139,6 +144,12 @@ http://www.opensource.org/licenses/mit-license.php
       @selectTab(eq)
       @selectPanel(eq)
 
+    # removes tab elements from dom
+    removeTabs: ->
+
+      @el.addClass('tabsNone')
+      @getTabs().remove()
+
     # adds class to container
     setTabsPosition: (pos) ->
 
@@ -148,28 +159,24 @@ http://www.opensource.org/licenses/mit-license.php
     # will return from cache if called previously
     getTabs: ->
 
-      @el.find('.contentTabsNav').find('li') unless @tabs
+      @tabs = @el.find('.contentTabsNav').find('li') unless @tabs
+      @tabs
 
     # 'selects' a tab by applying 'active' class to tab element
     selectTab: (eq) ->
 
-      @updateHash(eq) if (@options.maintainTabState)
+      @updateHash(eq) if (@options.maintainState)
       @getTabs()
         .removeClass(@options.tabActiveClass)
         .eq(eq)
         .addClass(@options.tabActiveClass)
 
-    # removes tab elements from dom
-    removeTabs: ->
-
-      @el.addClass('tabsNone')
-      @getTabs().remove()
-
     # returns jquery collection of panel elements
     # will return from cache if called previously
     getPanels: ->
 
-      @el.find('.contentTabsPanel') unless @panels
+      @panels = @el.find('.contentTabsPanel') unless @panels
+      @panels
 
     # 'selects' a panel by hiding every panel and then showing the
     # panel from panel collection that matches index
