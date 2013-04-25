@@ -22,15 +22,15 @@ http://www.opensource.org/licenses/mit-license.php
   defaults =
     displayTabs: true
     maintainTabState: false # manages which tab is active through url hashes
-    tabStateKey: 'ctab' # any string
     pinPanelIntro: false # will 'pin' a section of content above scrollable area
     tabLocation: 'left' # left, right, top, bottom
     tabActiveClass: 'active' # any string
 
-  # plugin constructor
   class Tabs
 
+    # plugin constructor
     constructor: (@element, options) ->
+
       @el = $(@element)
       @options = $.extend({}, defaults, options)
       @_defaults = defaults
@@ -43,10 +43,13 @@ http://www.opensource.org/licenses/mit-license.php
         top: 'tabsHorizontalTop'
         bottom: 'tabsHorizontalBottom'
       @activeTab = null
+      @tabStateKey = 'ctab'
       @hashObject = null
       @init()
 
+    # plugin initializer
     init: ->
+
       # don't display any tabs if disabled in options
       unless @options.displayTabs
         @removeTabs()
@@ -82,14 +85,16 @@ http://www.opensource.org/licenses/mit-license.php
     # checks if there's a hash for tab state maintenance
     # if there is, set activeTab var to hash state
     getStateFromHash: ->
+
       @hashObject = @getHashObject()
       return null if !@hashObject
-      state = @hashObject[@options.tabStateKey] ? null
+      state = @hashObject[@tabStateKey] ? null
       return null if !state
-      @activeTab = @hashObject[@options.tabStateKey]
+      @activeTab = @hashObject[@tabStateKey]
 
     # returns null if no hashes, otherwise returns object created from hash
     getHashObject: ->
+
       hash = @getUrlHash()
       return null if !hash
       args = {}
@@ -104,40 +109,50 @@ http://www.opensource.org/licenses/mit-license.php
 
     # converts the hash object into a string for the url hash
     buildHashObject: () ->
+
       $.param(@hashObject)
 
     # updates the hash based on
     updateHash: (eq) ->
+
       eq += '' # convert to string
       @hashObject = {} if !@hashObject # if @hashObject is null, create it
-      @hashObject[@options.tabStateKey] = eq
+      @hashObject[@tabStateKey] = eq
       @setUrlHash(@buildHashObject())
+      console.log 'content tabs update: '
+      console.log @hashObject
 
     # caches the hash from the current window and returns an object of the hash
     getUrlHash: ->
+
       if window.location.hash then window.location.hash.substring(1) else null
 
     # updates url hash with tab identifier
     setUrlHash: (hash) ->
-      window.location.hash = hash
 
-    # adds class to container
-    setTabsPosition: (pos) ->
-      @el.addClass(pos)
+      window.location.hash = hash
 
     # updates the state of the component
     updateState: (eq) ->
+
       @activeTab = eq
       @selectTab(eq)
       @selectPanel(eq)
 
+    # adds class to container
+    setTabsPosition: (pos) ->
+
+      @el.addClass(pos)
+
     # returns jq collection of tab elements
     # will return from cache if called previously
     getTabs: ->
+
       @el.find('.contentTabsNav').find('li') unless @tabs
 
     # 'selects' a tab by applying 'active' class to tab element
     selectTab: (eq) ->
+
       @updateHash(eq) if (@options.maintainTabState)
       @getTabs()
         .removeClass(@options.tabActiveClass)
@@ -146,17 +161,20 @@ http://www.opensource.org/licenses/mit-license.php
 
     # removes tab elements from dom
     removeTabs: ->
+
       @el.addClass('tabsNone')
       @getTabs().remove()
 
     # returns jquery collection of panel elements
     # will return from cache if called previously
     getPanels: ->
+
       @el.find('.contentTabsPanel') unless @panels
 
     # 'selects' a panel by hiding every panel and then showing the
     # panel from panel collection that matches index
     selectPanel: (eq) ->
+
       @getPanels()
         .hide()
         .eq(eq)
@@ -165,6 +183,7 @@ http://www.opensource.org/licenses/mit-license.php
     # adds class to container & moves .contentTabsPanelIntro divs
     # outside their respective parents in the dom
     pinPanels: ->
+
       sectionsToPin = undefined
       $this = undefined
       @el.addClass('pinPanelIntro')
