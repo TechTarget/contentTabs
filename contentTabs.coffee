@@ -127,7 +127,7 @@ http://www.opensource.org/licenses/mit-license.php
       @hashObject[@stateKey] = eq
       @setUrlHash(@buildHashObject())
 
-    # caches the hash from the current window and returns an object of the hash
+    # returns the hash from the current window or null
     getUrlHash: ->
 
       if window.location.hash then window.location.hash.substring(1) else null
