@@ -7,3 +7,19 @@
 // .contentTabsPanel:nth-child(4) { background-color: orange; }
 // .contentTabsPanel:nth-child(5) { background-color: purple; }
 
+
+/* copy these along with content tabs since they're used in the panel views */
+.mediaBlock, .mediaBlockContent { overflow: hidden; _overflow: visible; zoom: 1; }
+.mediaBlock img { float: left; margin-right: 10px; display: block; }
+.oneColList, .twoColGrid { clear: both; }
+.oneColList > ul, .twoColGrid > ul { clear: both; margin: 0 !important; padding: 0 !important; list-style: none; overflow: hidden; }
+.twoColGrid ul > li { clear: left; border-top: 1px solid #ddd; overflow: hidden; }
+.oneColList ul > li:first-child, .twoColGrid ul > li:first-child { border: none; margin-top: 0; }
+.twoColGrid .gridItem { width: 46%; float: left; margin: 15px 10px; }
+.twoColGrid .gridItem:first-child { border-right: 1px solid #ddd; padding-right: 10px; }
+.twoColGrid .gridItem p { margin: 10px 0 0 !important; line-height: 1.1 !important; }
+.twoColGrid .mediaBlockImage { width: 80px; height: 100px; }
+.oneColList { margin: -10px 0 0;}
+.oneColList li { border-top: 1px solid #ddd; margin: 15px 0 5px; padding: 15px 0 0; }
+.oneColList h4 { font-size: 16px; margin: 0 0 5px !important; }
+.oneColList p { margin: 0 0 5px !important; }

@@ -197,214 +197,195 @@ a:focus {
   margin: 0 20px 25px;
 }
 
-/* content tabs plugin styles */
 .contentTabs {
-  border: 1px solid #ccc;
-  overflow: hidden;
+  border: 1px solid #cccccc;
   margin: 0 0 25px;
+  overflow: hidden;
   position: relative;
 }
-
-.contentTabsCaption {
-  font-size: 26px;
-  margin: 0 0 5px !important;
-}
-
-.contentTabsNav {
+.contentTabs .contentTabsNav {
   background-color: #fafafa;
   position: relative;
 }
-
-.contentTabsNav ul {
-  background-color: #fff;
+.contentTabs .contentTabsNav ul {
+  background-color: white;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none;
 }
-
-.contentTabsNav li {
-  border-bottom: 1px solid #ccc;
-}
-
-.contentTabsNav li:hover {
-  background-color: #d4e9f2;
-}
-
-.contentTabsNav li a {
-  color: #000 !important;
+.contentTabs .contentTabsNav li a {
+  color: black !important;
+  background-color: white !important;
   display: block;
   text-transform: uppercase;
   padding: 10px;
   max-height: 38px;
 }
-
-.contentTabsNav li a:hover {
+.contentTabs .contentTabsNav li a:hover {
+  color: black !important;
+  background-color: #d4e9f2 !important;
   text-decoration: none !important;
 }
-
-.contentTabsNav li.active a {
-  color: #fff !important;
+.contentTabs .contentTabsNav li.active a {
+  color: white !important;
   background-color: #0099d8 !important;
   border-bottom: none;
   position: relative;
 }
-
-.contentTabsPanel {
-  display: none;
-  padding: 10px;
-  color: #4c4d4f;
-  height: 450px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.contentTabsPanel:first-child {
-  display: block;
-}
-
-.contentTabsPanelIntroGraphic {
-  border: 1px solid #ccc !important;
-  float: right;
-  margin: 0 0 10px 10px;
-}
-
-.contentTabsPanel p {
-  margin: 0 0 10px !important;
-}
-
-.contentTabsPanel h3 {
-  font-size: 16px !important;
-  margin: 0 0 5px !important;
-}
-
-.tabsVerticalLeft .contentTabsNav, .tabsVerticalRight .contentTabsNav {
-  width: 180px;
-  height: 470px;
-}
-
-.tabsVerticalLeft .contentTabsNav li.active a:after,
-.tabsVerticalRight .contentTabsNav li.active a:before,
-.tabsHorizontalTop .contentTabsNav li.active a:after,
-.tabsHorizontalBottom .contentTabsNav li.active a:before {
+.contentTabs .arrow, .contentTabs .verticalNavigationArrow, .contentTabs.tabsVerticalLeft .contentTabsNav li.active a:after, .contentTabs.tabsVerticalRight .contentTabsNav li.active a:before, .contentTabs .horizontalNavigationArrow, .contentTabs.tabsHorizontalTop .contentTabsNav li.active a:after, .contentTabs.tabsHorizontalBottom .contentTabsNav li.active a:before {
   content: '';
   position: absolute;
   display: block;
   height: 0;
   width: 0;
 }
-
-.tabsVerticalLeft .contentTabsNav {
-  float: left;
-  border-right: 1px solid #ccc;
-}
-
-.tabsVerticalLeft .contentTabsNav li.active a:after {
+.contentTabs .verticalNavigationArrow, .contentTabs.tabsVerticalLeft .contentTabsNav li.active a:after, .contentTabs.tabsVerticalRight .contentTabsNav li.active a:before {
   top: 0;
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+}
+.contentTabs .horizontalNavigationArrow, .contentTabs.tabsHorizontalTop .contentTabsNav li.active a:after, .contentTabs.tabsHorizontalBottom .contentTabsNav li.active a:before {
+  left: 40%;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+}
+.contentTabs .verticalNavigation, .contentTabs.tabsVerticalLeft .contentTabsNav, .contentTabs.tabsVerticalRight .contentTabsNav {
+  width: 180px;
+  height: 450px;
+}
+.contentTabs .verticalNavigation li, .contentTabs.tabsVerticalLeft .contentTabsNav li, .contentTabs.tabsVerticalRight .contentTabsNav li {
+  border-bottom: 1px solid #cccccc;
+}
+.contentTabs.tabsVerticalLeft .contentTabsNav {
+  float: left;
+  border-right: 1px solid #cccccc;
+}
+.contentTabs.tabsVerticalLeft .contentTabsNav li.active a:after {
   right: -12px;
-  border-top: 21px solid transparent;
   border-left: 12px solid #0099d8;
-  border-bottom: 21px solid transparent;
 }
-
-.tabsVerticalLeft .contentTabsPanelCollection {
+.contentTabs.tabsVerticalLeft .contentTabsPanelCollection {
   float: right;
   width: 740px;
 }
-
-.tabsVerticalRight .contentTabsNav {
+.contentTabs.tabsVerticalRight .contentTabsNav {
   float: right;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #cccccc;
 }
-
-.tabsVerticalRight .contentTabsNav li.active a:before {
-  top: 0;
+.contentTabs.tabsVerticalRight .contentTabsNav li.active a:before {
   left: -12px;
-  border-top: 21px solid transparent;
   border-right: 12px solid #0099d8;
-  border-bottom: 21px solid transparent;
 }
-
-.tabsVerticalRight .contentTabsPanelCollection {
+.contentTabs.tabsVerticalRight .contentTabsPanelCollection {
   float: left;
   width: 740px;
 }
-
-.tabsHorizontalTop .contentTabsNav ul {
-  border-bottom: 1px solid #ccc;
+.contentTabs .horizontalNavigation ul, .contentTabs.tabsHorizontalTop .contentTabsNav ul, .contentTabs.tabsHorizontalBottom .contentTabsNav ul {
   margin-bottom: 20px !important;
   text-align: center;
 }
-
-.tabsHorizontalTop .contentTabsNav li, .tabsHorizontalBottom .contentTabsNav li {
+.contentTabs .horizontalNavigation li, .contentTabs.tabsHorizontalTop .contentTabsNav li, .contentTabs.tabsHorizontalBottom .contentTabsNav li {
   display: inline-block;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #cccccc;
   border-bottom: none;
+  width: 150px;
 }
-
-.tabsHorizontalTop .contentTabsNav li:first-child, .tabsHorizontalBottom .contentTabsNav li:first-child {
-  border-left: 1px solid #ccc;
+.contentTabs .horizontalNavigation li:first-child, .contentTabs.tabsHorizontalTop .contentTabsNav li:first-child, .contentTabs.tabsHorizontalBottom .contentTabsNav li:first-child {
+  border-left: 1px solid #cccccc;
 }
-
-.tabsHorizontalTop .contentTabsNav li.active a:after {
-  top: 38px;
-  left: 33%;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+.contentTabs.tabsHorizontalTop .contentTabsNav ul {
+  border-bottom: 1px solid #cccccc;
+}
+.contentTabs.tabsHorizontalTop .contentTabsNav li.active a:after {
   border-top: 10px solid #0099d8;
+  top: 42px;
 }
-
-.tabsHorizontalBottom .contentTabsNav {
+.contentTabs.tabsHorizontalBottom .contentTabsNav {
   position: relative;
-  top: 475px;
+  top: 470px;
 }
-
-.tabsHorizontalBottom .contentTabsNav ul {
-  border-top: 1px solid #ccc;
-  margin-top: 20px !important;
-  text-align: center;
+.contentTabs.tabsHorizontalBottom .contentTabsNav ul {
+  border-top: 1px solid #cccccc;
 }
-
-.tabsHorizontalBottom .contentTabsNav li:first-child {
-  border-left: 1px solid #ccc;
-}
-
-.tabsHorizontalBottom .contentTabsNav li.active a:before {
-  top: -10px;
-  left: 33%;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+.contentTabs.tabsHorizontalBottom .contentTabsNav li.active a:before {
   border-bottom: 10px solid #0099d8;
+  top: -10px;
 }
-
-.tabsHorizontalBottom .contentTabsPanelCollection {
+.contentTabs.tabsHorizontalBottom .contentTabsPanelCollection {
   margin-top: -60px;
   margin-bottom: 60px;
 }
-
-.tabsNone .contentTabsNav {
+.contentTabs.tabsNone .contentTabsNav {
   display: none;
 }
-
-.pinPanelIntro .contentTabsPanel {
+.contentTabs .contentTabsPanel {
+  display: none;
+  padding: 10px;
+  color: #4c4d4f;
+  height: 430px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.contentTabs .contentTabsPanel:first-child {
+  display: block;
+}
+.contentTabs .contentTabsPanel p {
+  margin: 0 0 10px !important;
+}
+.contentTabs .contentTabsPanel h3 {
+  font-size: 16px !important;
+  margin: 0 0 5px !important;
+}
+.contentTabs .contentTabsPanel .contentTabsPanelIntroGraphic {
+  border: 1px solid #ccc !important;
+  float: right;
+  margin: 0 0 10px 10px;
+}
+.contentTabs.pinnedPanelTop .contentTabsPanel {
   overflow-y: hidden;
   overflow-x: hidden;
 }
-
-.pinPanelIntro .contentTabsPanelContent {
+.contentTabs.pinnedPanelTop .contentTabsPanelContent {
   height: 280px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
-.pinPanelIntro .contentTabsPanelIntro {
+.contentTabs.pinnedPanelTop .contentTabsPanelIntro {
   height: 150px;
   padding: 0 0 10px;
   margin: 0 0 15px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
   overflow: hidden;
 }
+.contentTabs.pinnedPanelLeft .contentTabsPanel {
+  padding: 0 10px 10px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.contentTabs.pinnedPanelLeft .contentTabsPanelContent {
+  float: right;
+  width: 660px;
+  height: 430px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.contentTabs.pinnedPanelLeft .contentTabsPanelIntro {
+  float: left;
+  width: 250px;
+  height: 430px;
+  overflow: hidden;
+}
+.contentTabs.pinnedPanelLeft .oneColList, .contentTabs.pinnedPanelLeft .twoColGrid {
+  clear: none;
+}
 
-/* copy these along wih content tabs since they're used in the panel views */
+/* may or may not be used */
+.contentTabsCaption {
+  font-size: 26px;
+  margin: 0 0 5px !important;
+}
+
+/* copy these along with content tabs since they're used in the panel views */
 .mediaBlock, .mediaBlockContent {
   overflow: hidden;
   _overflow: visible;
@@ -478,167 +459,4 @@ a:focus {
 
 .oneColList p {
   margin: 0 0 5px !important;
-}
-
-.contentAccordion {
-  border: 1px solid #cccccc;
-  margin: 0 0 25px;
-}
-.contentAccordion .contentAccordionItem {
-  margin: 0 0 1px;
-}
-.contentAccordion .contentAccordionItem:last-child {
-  margin: 0;
-}
-.contentAccordion .contentAccordionItem .contentAccordionItemTitle {
-  background-color: #666666;
-  color: white;
-  padding: 3px 10px;
-  cursor: pointer;
-  position: relative;
-}
-.contentAccordion .contentAccordionItem .contentAccordionItemToggleIcon {
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAADCAMAAACtb39mAAAAElBMVEX+/v7////9/f37+/v6+vr8/Pz+o0ZmAAAAHElEQVQIHWNgYWJiYoACIJOZgYERFTAAhZABKwAFDgArA6K23gAAAABJRU5ErkJggg==") no-repeat 0 0;
-  display: block;
-  height: 3px;
-  width: 16px;
-  position: absolute;
-  top: 13px;
-  right: 10px;
-}
-.contentAccordion .contentAccordionItem .contentAccordionItemBody {
-  background-color: white;
-  display: none;
-  padding: 10px;
-}
-.contentAccordion .active .contentAccordionItemBody {
-  display: block;
-}
-.contentAccordion .active .contentAccordionItemTitle {
-  color: white;
-  background-color: #007cbe;
-  cursor: default;
-}
-.contentAccordion .active .contentAccordionItemToggleIcon {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAICAYAAADJEc7MAAAAfUlEQVR42oXOsQ2AMAwEQEdiJgZgABZgBCqKTAAjMAIFNSsxAQ0UKcwjPbLlAl66InZesqjqChcMID8G/l2fR1HL+FGa1FKeQQafGZIrJM588rvsw2KBipaw60H8KV04e6M3hX/EiqaFE2JO7sQXowYOtRycyWeRatipBoluITR/Ld5BhDgAAAAASUVORK5CYII=");
-  height: 8px;
-  width: 14px;
-  top: 10px;
-}
-
-.featuredVideo {
-  border: 1px solid #444444;
-  margin: 0 0 25px;
-  padding: 10px 0 10px 10px;
-  position: relative;
-  overflow: hidden;
-  *zoom: 1;
-}
-.featuredVideo .featuredVideoPlayer {
-  background-color: black;
-  float: left;
-  height: 360px;
-  position: relative;
-  width: 640px;
-}
-.featuredVideo.noPlaylist .featuredVideoPlayer {
-  width: 920px;
-  height: 520px;
-}
-.featuredVideo .featuredVideoPlaylist {
-  background-color: #ececec;
-  float: right;
-  height: 380px;
-  margin: -10px 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  visibility: hidden;
-  width: 280px;
-}
-.featuredVideo .featuredVideoPlaylist .featuredVideoPlaylistHeader {
-  color: white;
-  background-color: #444444;
-  font-size: 16px;
-  font-weight: normal;
-  padding: 3px 8px !important;
-  margin: 0 !important;
-}
-.featuredVideo .featuredVideoPlaylist ul {
-  list-style: none;
-  padding: 0 !important;
-  margin: 3px 0 3px !important;
-}
-.featuredVideo .featuredVideoPlaylist ul li {
-  cursor: pointer;
-  background-color: white;
-  min-height: 66px;
-  margin-bottom: 2px;
-  border-left: 6px solid #cccccc;
-}
-.featuredVideo .featuredVideoPlaylist ul li.active {
-  border-left: 6px solid #2ba6cb;
-}
-.featuredVideo .featuredVideoPlaylist .featuredVideoTitle {
-  font-size: 12px;
-  margin: 0 !important;
-  line-height: 1.3 !important;
-  color: black;
-  font-weight: normal;
-}
-.featuredVideo .featuredVideoPlaylist .mediaBlock, .featuredVideo .featuredVideoPlaylist .mediaBlockContent {
-  overflow: hidden;
-  _overflow: visible;
-  *zoom: 1;
-}
-.featuredVideo .featuredVideoPlaylist .mediaBlock {
-  padding: 8px 5px;
-  margin: 1px 2px 0;
-}
-.featuredVideo .featuredVideoPlaylist .mediaBlock img {
-  float: left;
-  margin-right: 10px;
-  display: block;
-  width: 100px;
-  height: 50px;
-}
-.featuredVideo .featuredVideoPlaylist .featuredVideoSummary {
-  display: none;
-}
-.featuredVideo .featuredVideoPlaylistTooltip {
-  display: none;
-  z-index: 1;
-  border: 1px solid #444;
-  background-color: #fff;
-  position: absolute;
-  right: 288px;
-  top: 0;
-  min-height: 48px;
-  width: 250px;
-  padding: 8px 10px;
-  font-size: 13px;
-  line-height: 16px;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-.featuredVideo .featuredVideoPlaylistTooltip:after {
-  content: '';
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: 50%;
-  margin-top: -8px;
-  right: -8px;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid #444;
-}
-.featuredVideo .featuredVideoPlayerOverlay {
-  height: 360px;
-  width: 640px;
-  background-color: #ccc;
-  opacity: .5;
-  position: absolute;
-  top: 0;
-  left: 0;
 }

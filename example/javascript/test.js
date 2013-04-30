@@ -2,19 +2,30 @@ $(document).on('ready', function() {
 
   'use strict';
 
-  // init plugin
-  $('.featuredVideo').featuredVideo({
-    autoplayFirstVideo: false,
-    supportsDeepLinking: true,
-    showPlaylist: true,
-    showPlaylistTooltips: true,
-    tooltipHtml: '<div class="featuredVideoPlaylistTooltip"></div>'
+  /* content tabs component */
+  $('.contentTabs').eq(0).contentTabs({
+    tabLocation: 'top',
+    maintainState: true,
+    pinPanelIntro: true,
+    pinnedPanelLocation: 'left'
   });
 
-  // init contentAccordion component
-  $('.contentAccordion').contentAccordion({
-    indexOfOpenPanel: 0,
-    maintainState: true
+  $('.contentTabs').eq(1).contentTabs({
+    tabLocation: 'left',
+    pinPanelIntro: true,
+    pinnedPanelLocation: 'top'
+  });
+
+  $('.contentTabs').eq(2).contentTabs({
+    tabLocation: 'right'
+  });
+
+  $('.contentTabs').eq(3).contentTabs({
+    tabLocation: 'bottom'
+  });
+
+  $('.contentTabs').eq(4).contentTabs({
+    displayTabs: false
   });
 
   $('body *').inlineIpsum({token: '@'});
@@ -29,30 +40,6 @@ $(document).on('ready', function() {
           size: 16
         }
       }
-  });
-
-  /* content tabs component */
-  $('.contentTabs').eq(0).contentTabs({
-    tabLocation: 'top',
-    maintainState: true,
-    pinPanelIntro: true
-  });
-
-  $('.contentTabs').eq(1).contentTabs({
-    tabLocation: 'left',
-    pinPanelIntro: true
-  });
-
-  $('.contentTabs').eq(2).contentTabs({
-    tabLocation: 'right'
-  });
-
-  $('.contentTabs').eq(3).contentTabs({
-    tabLocation: 'bottom'
-  });
-
-  $('.contentTabs').eq(4).contentTabs({
-    displayTabs: false
   });
 
 });

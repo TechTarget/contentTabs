@@ -1,5 +1,5 @@
 ###!
-Content Tabs v1.0.4 (http://okize.github.com/)
+Content Tabs v1.0.5 (http://okize.github.com/)
 Copyright (c) 2013 | Licensed under the MIT license
 http://www.opensource.org/licenses/mit-license.php
 ###
@@ -21,11 +21,12 @@ http://www.opensource.org/licenses/mit-license.php
   # default plugin options
   defaults =
     displayTabs: true
+    tabLocation: 'left' # left, right, top, bottom
+    tabActiveClass: 'active' # any string
     maintainState: false # manages which tab is active through url hashes
     indexOfOpenPanel: 0 # can set a default tab/panel to be open
     pinPanelIntro: false # will 'pin' a section of content above scrollable area
-    tabLocation: 'left' # left, right, top, bottom
-    tabActiveClass: 'active' # any string
+    pinnedPanelLocation: 'top' # left, top
 
   class Tabs
 
@@ -38,11 +39,14 @@ http://www.opensource.org/licenses/mit-license.php
       @_name = pluginName
       @tabs = null
       @panels = null
-      @tabLocationClassName =
-        left: 'tabsVerticalLeft'
-        right: 'tabsVerticalRight'
+      @tabLocationClassMap =
         top: 'tabsHorizontalTop'
         bottom: 'tabsHorizontalBottom'
+        left: 'tabsVerticalLeft'
+        right: 'tabsVerticalRight'
+      @pinnedPanelLocationClassMap =
+        top: 'pinnedPanelTop'
+        left: 'pinnedPanelLeft'
       @activeTab = @options.indexOfOpenPanel
       @stateKey = 'tabState'
       @hashObject = null
@@ -50,6 +54,8 @@ http://www.opensource.org/licenses/mit-license.php
 
     # plugin initializer
     init: ->
+
+      console.log(@options.pinnedPanelLocation)
 
       # don't display any tabs if disabled in options
       unless @options.displayTabs
@@ -61,7 +67,7 @@ http://www.opensource.org/licenses/mit-license.php
 
       # adds a class to the plugin container to allow the css to determine the
       # position (ie. top, left, etc) of the tabs relative to their panels
-      @setTabsPosition @tabLocationClassName[@options.tabLocation]
+      @setTabsPosition @tabLocationClassMap[@options.tabLocation]
 
       # 'pins' the first part of a panel to the top so that the overflow
       # happens on the section underneath; brittle!
@@ -193,7 +199,12 @@ http://www.opensource.org/licenses/mit-license.php
 
       sectionsToPin = undefined
       $this = undefined
-      @el.addClass('pinPanelIntro')
+
+      # add classes for positioning
+      @el
+        .addClass('pinPanelIntro')
+        .addClass(@pinnedPanelLocationClassMap[@options.pinnedPanelLocation])
+
       sectionsToPin = @el.find('.contentTabsPanelIntro')
       sectionsToPin.each ->
         $this = $(this)

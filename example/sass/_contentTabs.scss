@@ -1,55 +1,323 @@
-/* content tabs plugin styles */
-.contentTabs { border: 1px solid #ccc; overflow: hidden; margin: 0 0 25px; position: relative; }
-.contentTabsCaption { font-size: 26px; margin: 0 0 5px !important; }
-.contentTabsNav { background-color: #fafafa; position: relative; }
-.contentTabsNav ul { background-color: #fff; margin: 0 !important; padding: 0 !important; list-style: none; }
-.contentTabsNav li { border-bottom: 1px solid #ccc; }
-.contentTabsNav li:hover { background-color: #d4e9f2; }
-.contentTabsNav li a { color: #000 !important; display: block; text-transform: uppercase; padding: 10px; max-height: 38px; }
-.contentTabsNav li a:hover { text-decoration: none !important; }
-.contentTabsNav li.active a { color: #fff !important; background-color: #0099d8 !important; border-bottom: none; position: relative; }
-.contentTabsPanel { display: none; padding: 10px; color: #4c4d4f; height: 450px; overflow-y: scroll; overflow-x: hidden; }
-.contentTabsPanel:first-child { display: block; }
-.contentTabsPanelIntroGraphic { border: 1px solid #ccc !important; float: right; margin: 0 0 10px 10px; }
-.contentTabsPanel p { margin: 0 0 10px !important; }
-.contentTabsPanel h3 { font-size: 16px !important; margin: 0 0 5px !important; }
-.tabsVerticalLeft .contentTabsNav, .tabsVerticalRight .contentTabsNav { width: 180px; height: 470px; }
-.tabsVerticalLeft .contentTabsNav li.active a:after,
-.tabsVerticalRight .contentTabsNav li.active a:before,
-.tabsHorizontalTop .contentTabsNav li.active a:after,
-.tabsHorizontalBottom .contentTabsNav li.active a:before { content: ''; position: absolute; display: block; height: 0; width: 0; }
-.tabsVerticalLeft .contentTabsNav { float: left; border-right: 1px solid #ccc; }
-.tabsVerticalLeft .contentTabsNav li.active a:after { top: 0; right: -12px; border-top: 21px solid transparent; border-left: 12px solid #0099d8; border-bottom: 21px solid transparent; }
-.tabsVerticalLeft .contentTabsPanelCollection { float: right; width: 740px; }
-.tabsVerticalRight .contentTabsNav { float: right; border-left: 1px solid #ccc; }
-.tabsVerticalRight .contentTabsNav li.active a:before { top: 0; left: -12px; border-top: 21px solid transparent; border-right: 12px solid #0099d8; border-bottom: 21px solid transparent; }
-.tabsVerticalRight .contentTabsPanelCollection { float: left; width: 740px; }
-.tabsHorizontalTop .contentTabsNav ul { border-bottom: 1px solid #ccc; margin-bottom: 20px !important; text-align: center; }
-.tabsHorizontalTop .contentTabsNav li, .tabsHorizontalBottom .contentTabsNav li { display: inline-block; border-right: 1px solid #ccc; border-bottom: none; }
-.tabsHorizontalTop .contentTabsNav li:first-child, .tabsHorizontalBottom .contentTabsNav li:first-child { border-left: 1px solid #ccc; }
-.tabsHorizontalTop .contentTabsNav li.active a:after { top: 38px; left: 33%; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #0099d8; }
-.tabsHorizontalBottom .contentTabsNav { position: relative; top: 475px; }
-.tabsHorizontalBottom .contentTabsNav ul { border-top: 1px solid #ccc; margin-top: 20px !important; text-align: center; }
-.tabsHorizontalBottom .contentTabsNav li:first-child { border-left: 1px solid #ccc; }
-.tabsHorizontalBottom .contentTabsNav li.active a:before { top: -10px; left: 33%; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #0099d8; }
-.tabsHorizontalBottom .contentTabsPanelCollection { margin-top: -60px; margin-bottom: 60px; }
-.tabsNone .contentTabsNav { display: none; }
-.pinPanelIntro .contentTabsPanel { overflow-y: hidden; overflow-x: hidden; }
-.pinPanelIntro .contentTabsPanelContent { height: 280px; overflow-y: scroll; overflow-x: hidden; }
-.pinPanelIntro .contentTabsPanelIntro { height: 150px; padding: 0 0 10px; margin: 0 0 15px; border-bottom: 1px solid #ddd; overflow: hidden; }
+@import "compass/css3";
 
-/* copy these along wih content tabs since they're used in the panel views */
-.mediaBlock, .mediaBlockContent { overflow: hidden; _overflow: visible; zoom: 1; }
-.mediaBlock img { float: left; margin-right: 10px; display: block; }
-.oneColList, .twoColGrid { clear: both; }
-.oneColList > ul, .twoColGrid > ul { clear: both; margin: 0 !important; padding: 0 !important; list-style: none; overflow: hidden; }
-.twoColGrid ul > li { clear: left; border-top: 1px solid #ddd; overflow: hidden; }
-.oneColList ul > li:first-child, .twoColGrid ul > li:first-child { border: none; margin-top: 0; }
-.twoColGrid .gridItem { width: 46%; float: left; margin: 15px 10px; }
-.twoColGrid .gridItem:first-child { border-right: 1px solid #ddd; padding-right: 10px; }
-.twoColGrid .gridItem p { margin: 10px 0 0 !important; line-height: 1.1 !important; }
-.twoColGrid .mediaBlockImage { width: 80px; height: 100px; }
-.oneColList { margin: -10px 0 0;}
-.oneColList li { border-top: 1px solid #ddd; margin: 15px 0 5px; padding: 15px 0 0; }
-.oneColList h4 { font-size: 16px; margin: 0 0 5px !important; }
-.oneColList p { margin: 0 0 5px !important; }
+// component
+$component-border-color: #ccc;
+$component-height: 450px;
+
+// tabs
+$tab-color: #000;
+$tab-bgColor: #fff;
+$tab-active-color: #fff;
+$tab-active-bgColor: #0099d8;
+$tab-hover-color: #000;
+$tab-hover-bgColor: #d4e9f2;
+
+// vertical tab orientation
+$navigation-vertical-bgColor: #fafafa;
+$navigation-vertical-width: 180px;
+$navigation-vertical-arrow-width-x: 12px;
+$navigation-vertical-arrow-width-y: 22px;
+$panel-vertical-width: 740px;
+
+// horizontal tab orientation
+$navigation-horizontal-bgColor: #fff;
+$navigation-horizontal-height: 60px;
+$navigation-horizontal-align: center;
+$navigation-horizontal-tab-width: 150px;
+$navigation-horizontal-arrow-align: 40%;
+$navigation-horizontal-arrow-width-x: 12px;
+$navigation-horizontal-arrow-width-y: 10px;
+
+// for 'pinned' panel if enabled
+$pinned-panel-left-total-width: 910px;
+$pinned-panel-left-intro-width: 250px;
+$pinned-panel-top-height: 150px;
+
+.contentTabs {
+  border: 1px solid $component-border-color;
+  margin: 0 0 25px;
+  overflow: hidden;
+  position: relative;
+
+  // navigation
+  .contentTabsNav {
+    background-color: $navigation-vertical-bgColor;
+    position: relative;
+
+    ul {
+      background-color: $navigation-horizontal-bgColor;
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none;
+    }
+
+    li {
+
+      a {
+        color: $tab-color !important;
+        background-color: $tab-bgColor !important;
+        display: block;
+        text-transform: uppercase;
+        padding: 10px;
+        max-height: 38px;
+
+        &:hover {
+          color: $tab-hover-color !important;
+          background-color: $tab-hover-bgColor !important;
+          text-decoration: none !important;
+        }
+
+      }
+
+      &.active a {
+        color: $tab-active-color !important;
+        background-color: $tab-active-bgColor !important;
+        border-bottom: none;
+        position: relative;
+      }
+
+    }
+
+  }
+
+  // the triangle/notch/pointer/arrow that's inside/outside the tabs
+  .arrow {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 0;
+    width: 0;
+  }
+
+  .verticalNavigationArrow {
+    @extend .arrow;
+    top: 0;
+    border-top: $navigation-vertical-arrow-width-y solid transparent;
+    border-bottom: $navigation-vertical-arrow-width-y solid transparent;
+  }
+
+  .horizontalNavigationArrow {
+    @extend .arrow;
+    left: $navigation-horizontal-arrow-align;
+    border-left: $navigation-horizontal-arrow-width-x solid transparent;
+    border-right: $navigation-horizontal-arrow-width-x solid transparent;
+  }
+
+  .verticalNavigation {
+    width: $navigation-vertical-width;
+    height: $component-height;
+
+    li {
+      border-bottom: 1px solid $component-border-color;
+    }
+
+  }
+
+  &.tabsVerticalLeft {
+
+    .contentTabsNav {
+      @extend .verticalNavigation;
+      float: left;
+      border-right: 1px solid $component-border-color;
+
+      li.active a:after {
+        @extend .verticalNavigationArrow;
+        right: -$navigation-vertical-arrow-width-x;
+        border-left: $navigation-vertical-arrow-width-x solid $tab-active-bgColor;
+      }
+
+    }
+
+    .contentTabsPanelCollection {
+      float: right;
+      width: $panel-vertical-width;
+    }
+
+  }
+
+  &.tabsVerticalRight {
+
+    .contentTabsNav {
+      @extend .verticalNavigation;
+      float: right;
+      border-left: 1px solid $component-border-color;
+
+      li.active a:before {
+        @extend .verticalNavigationArrow;
+        left: -$navigation-vertical-arrow-width-x;
+        border-right: $navigation-vertical-arrow-width-x solid $tab-active-bgColor;
+      }
+
+    }
+
+    .contentTabsPanelCollection {
+      float: left;
+      width: $panel-vertical-width;
+    }
+
+  }
+
+  .horizontalNavigation {
+
+    ul {
+      margin-bottom: 20px !important;
+      text-align: $navigation-horizontal-align;
+    }
+
+    li {
+      display: inline-block;
+      border-right: 1px solid $component-border-color;
+      border-bottom: none;
+      width: $navigation-horizontal-tab-width;
+
+      &:first-child {
+        border-left: 1px solid $component-border-color;
+      }
+
+    }
+
+  }
+
+  &.tabsHorizontalTop {
+
+    .contentTabsNav {
+
+      @extend .horizontalNavigation;
+
+      ul {
+        border-bottom: 1px solid $component-border-color;
+      }
+
+      li.active a:after {
+        @extend .horizontalNavigationArrow;
+        border-top: $navigation-horizontal-arrow-width-y solid $tab-active-bgColor;
+        top: 42px;
+      }
+
+    }
+
+  }
+
+  &.tabsHorizontalBottom {
+
+    .contentTabsNav {
+
+      @extend .horizontalNavigation;
+
+      position: relative;
+      top: $component-height + 20;
+
+      ul {
+        border-top: 1px solid $component-border-color;
+      }
+
+      li.active a:before {
+        @extend .horizontalNavigationArrow;
+        border-bottom: $navigation-horizontal-arrow-width-y solid $tab-active-bgColor;
+        top: -10px;
+      }
+
+    }
+
+    .contentTabsPanelCollection {
+      margin-top: -$navigation-horizontal-height;
+      margin-bottom: $navigation-horizontal-height;
+    }
+
+  }
+
+  // option for disabling any tab navigation
+  &.tabsNone .contentTabsNav {
+    display: none;
+  }
+
+  // panels
+  .contentTabsPanel {
+    display: none;
+    padding: 10px;
+    color: #4c4d4f;
+    height: $component-height - 20;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    // always display the first panel
+    &:first-child {
+      display: block;
+    }
+
+    p {
+      margin: 0 0 10px !important;
+    }
+
+    h3 {
+      font-size: 16px !important;
+      margin: 0 0 5px !important;
+    }
+
+    .contentTabsPanelIntroGraphic {
+      border: 1px solid #ccc !important;
+      float: right;
+      margin: 0 0 10px 10px;
+    }
+
+  }
+
+  &.pinnedPanelTop {
+
+    .contentTabsPanel {
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+
+    .contentTabsPanelContent {
+      height: $component-height - $pinned-panel-top-height - 20;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .contentTabsPanelIntro {
+      height: $pinned-panel-top-height;
+      padding: 0 0 10px;
+      margin: 0 0 15px;
+      border-bottom: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+  }
+
+  &.pinnedPanelLeft {
+
+    .contentTabsPanel {
+      padding: 0 10px 10px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+
+    .contentTabsPanelContent {
+      float: right;
+      width: $pinned-panel-left-total-width - $pinned-panel-left-intro-width;
+      height: $component-height - 20;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .contentTabsPanelIntro {
+      float: left;
+      width: $pinned-panel-left-intro-width;
+      height: $component-height - 20;
+      overflow: hidden;
+    }
+
+    .oneColList, .twoColGrid {
+      clear: none;
+    }
+
+  }
+
+}
+
+/* may or may not be used */
+.contentTabsCaption {
+  font-size: 26px;
+  margin: 0 0 5px !important;
+}
