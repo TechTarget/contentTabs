@@ -1,51 +1,54 @@
-@import "compass/css3";
-
 // component
-$component-border-color: #ccc;
-$component-height: 450px;
+$ct-border-color: #ccc;
+$ct-height: 450px;
 
 // tabs
-$tab-color: #000;
-$tab-bgColor: #fff;
-$tab-active-color: #fff;
-$tab-active-bgColor: #0099d8;
-$tab-hover-color: #000;
-$tab-hover-bgColor: #d4e9f2;
+$ct-tab-size: 12px;
+$ct-tab-height: 35px;
+$ct-tab-color: #000;
+$ct-tab-bgColor: #fff;
+$ct-tab-active-color: #fff;
+$ct-tab-active-bgColor: #0099d8;
+$ct-tab-hover-color: #000;
+$ct-tab-hover-bgColor: #d4e9f2;
 
 // vertical tab orientation
-$navigation-vertical-bgColor: #fafafa;
-$navigation-vertical-width: 180px;
-$navigation-vertical-arrow-width-x: 12px;
-$navigation-vertical-arrow-width-y: 22px;
-$panel-vertical-width: 740px;
+$ct-navigation-vertical-bgColor: #fafafa;
+$ct-navigation-vertical-width: 180px;
+$ct-navigation-vertical-arrow-color: $ct-tab-active-bgColor;
+$ct-navigation-vertical-arrow-width-x: 12px;
+$ct-navigation-vertical-arrow-width-y: 18px;
+$ct-panel-vertical-width: 740px;
 
 // horizontal tab orientation
-$navigation-horizontal-bgColor: #fff;
-$navigation-horizontal-height: 60px;
-$navigation-horizontal-align: center;
-$navigation-horizontal-tab-width: 150px;
-$navigation-horizontal-arrow-align: 40%;
-$navigation-horizontal-arrow-width-x: 12px;
-$navigation-horizontal-arrow-width-y: 10px;
+$ct-navigation-horizontal-bgColor: #fff;
+$ct-navigation-horizontal-height: $ct-tab-height;
+$ct-navigation-horizontal-align: center;
+$ct-navigation-horizontal-tab-width: 150px;
+$ct-navigation-horizontal-arrow-type: "outie"; // innie, outie
+$ct-navigation-horizontal-arrow-color: $ct-tab-active-bgColor;
+$ct-navigation-horizontal-arrow-align: 40%;
+$ct-navigation-horizontal-arrow-width-x: 12px;
+$ct-navigation-horizontal-arrow-width-y: 10px;
 
 // for 'pinned' panel if enabled
-$pinned-panel-left-total-width: 910px;
-$pinned-panel-left-intro-width: 250px;
-$pinned-panel-top-height: 150px;
+$ct-pinned-panel-left-total-width: 910px;
+$ct-pinned-panel-left-intro-width: 250px;
+$ct-pinned-panel-top-height: 150px;
 
 .contentTabs {
-  border: 1px solid $component-border-color;
+  border: 1px solid $ct-border-color;
   margin: 0 0 25px;
   overflow: hidden;
   position: relative;
 
   // navigation
   .contentTabsNav {
-    background-color: $navigation-vertical-bgColor;
+    background-color: $ct-navigation-vertical-bgColor;
     position: relative;
 
     ul {
-      background-color: $navigation-horizontal-bgColor;
+      background-color: $ct-navigation-horizontal-bgColor;
       margin: 0 !important;
       padding: 0 !important;
       list-style: none;
@@ -54,24 +57,26 @@ $pinned-panel-top-height: 150px;
     li {
 
       a {
-        color: $tab-color !important;
-        background-color: $tab-bgColor !important;
+        color: $ct-tab-color !important;
+        background-color: $ct-tab-bgColor !important;
         display: block;
+        font-size: $ct-tab-size;
+        height: $ct-tab-height;
+        line-height: $ct-tab-height;
         text-transform: uppercase;
-        padding: 10px;
-        max-height: 38px;
+        padding: 0 10px;
 
         &:hover {
-          color: $tab-hover-color !important;
-          background-color: $tab-hover-bgColor !important;
+          color: $ct-tab-hover-color !important;
+          background-color: $ct-tab-hover-bgColor !important;
           text-decoration: none !important;
         }
 
       }
 
       &.active a {
-        color: $tab-active-color !important;
-        background-color: $tab-active-bgColor !important;
+        color: $ct-tab-active-color !important;
+        background-color: $ct-tab-active-bgColor !important;
         border-bottom: none;
         position: relative;
       }
@@ -92,23 +97,23 @@ $pinned-panel-top-height: 150px;
   .verticalNavigationArrow {
     @extend .arrow;
     top: 0;
-    border-top: $navigation-vertical-arrow-width-y solid transparent;
-    border-bottom: $navigation-vertical-arrow-width-y solid transparent;
+    border-top: $ct-navigation-vertical-arrow-width-y solid transparent;
+    border-bottom: $ct-navigation-vertical-arrow-width-y solid transparent;
   }
 
   .horizontalNavigationArrow {
     @extend .arrow;
-    left: $navigation-horizontal-arrow-align;
-    border-left: $navigation-horizontal-arrow-width-x solid transparent;
-    border-right: $navigation-horizontal-arrow-width-x solid transparent;
+    left: $ct-navigation-horizontal-arrow-align;
+    border-left: $ct-navigation-horizontal-arrow-width-x solid transparent;
+    border-right: $ct-navigation-horizontal-arrow-width-x solid transparent;
   }
 
   .verticalNavigation {
-    width: $navigation-vertical-width;
-    height: $component-height;
+    width: $ct-navigation-vertical-width;
+    height: $ct-height;
 
     li {
-      border-bottom: 1px solid $component-border-color;
+      border-bottom: 1px solid $ct-border-color;
     }
 
   }
@@ -118,19 +123,19 @@ $pinned-panel-top-height: 150px;
     .contentTabsNav {
       @extend .verticalNavigation;
       float: left;
-      border-right: 1px solid $component-border-color;
+      border-right: 1px solid $ct-border-color;
 
       li.active a:after {
         @extend .verticalNavigationArrow;
-        right: -$navigation-vertical-arrow-width-x;
-        border-left: $navigation-vertical-arrow-width-x solid $tab-active-bgColor;
+        right: -$ct-navigation-vertical-arrow-width-x;
+        border-left: $ct-navigation-vertical-arrow-width-x solid $ct-navigation-vertical-arrow-color;
       }
 
     }
 
     .contentTabsPanelCollection {
       float: right;
-      width: $panel-vertical-width;
+      width: $ct-panel-vertical-width;
     }
 
   }
@@ -140,19 +145,19 @@ $pinned-panel-top-height: 150px;
     .contentTabsNav {
       @extend .verticalNavigation;
       float: right;
-      border-left: 1px solid $component-border-color;
+      border-left: 1px solid $ct-border-color;
 
       li.active a:before {
         @extend .verticalNavigationArrow;
-        left: -$navigation-vertical-arrow-width-x;
-        border-right: $navigation-vertical-arrow-width-x solid $tab-active-bgColor;
+        left: -$ct-navigation-vertical-arrow-width-x;
+        border-right: $ct-navigation-vertical-arrow-width-x solid $ct-navigation-vertical-arrow-color;
       }
 
     }
 
     .contentTabsPanelCollection {
       float: left;
-      width: $panel-vertical-width;
+      width: $ct-panel-vertical-width;
     }
 
   }
@@ -161,17 +166,17 @@ $pinned-panel-top-height: 150px;
 
     ul {
       margin-bottom: 20px !important;
-      text-align: $navigation-horizontal-align;
+      text-align: $ct-navigation-horizontal-align;
     }
 
     li {
       display: inline-block;
-      border-right: 1px solid $component-border-color;
+      border-right: 1px solid $ct-border-color;
       border-bottom: none;
-      width: $navigation-horizontal-tab-width;
+      width: $ct-navigation-horizontal-tab-width;
 
       &:first-child {
-        border-left: 1px solid $component-border-color;
+        border-left: 1px solid $ct-border-color;
       }
 
     }
@@ -185,13 +190,19 @@ $pinned-panel-top-height: 150px;
       @extend .horizontalNavigation;
 
       ul {
-        border-bottom: 1px solid $component-border-color;
+        border-bottom: 1px solid $ct-border-color;
       }
 
       li.active a:after {
         @extend .horizontalNavigationArrow;
-        border-top: $navigation-horizontal-arrow-width-y solid $tab-active-bgColor;
-        top: 42px;
+        @if $ct-navigation-horizontal-arrow-type == "outie" {
+          border-top: $ct-navigation-horizontal-arrow-width-y solid $ct-navigation-horizontal-arrow-color;
+          top: $ct-tab-height;
+        } @else if $ct-navigation-horizontal-arrow-type == "innie" {
+          border-bottom: $ct-navigation-horizontal-arrow-width-y solid $ct-navigation-horizontal-arrow-color;
+          bottom: 0;
+        }
+
       }
 
     }
@@ -205,23 +216,29 @@ $pinned-panel-top-height: 150px;
       @extend .horizontalNavigation;
 
       position: relative;
-      top: $component-height + 20;
+      top: $ct-height + 20;
 
       ul {
-        border-top: 1px solid $component-border-color;
+        border-top: 1px solid $ct-border-color;
       }
 
       li.active a:before {
         @extend .horizontalNavigationArrow;
-        border-bottom: $navigation-horizontal-arrow-width-y solid $tab-active-bgColor;
-        top: -10px;
+        @if $ct-navigation-horizontal-arrow-type == "outie" {
+          border-bottom: $ct-navigation-horizontal-arrow-width-y solid $ct-navigation-horizontal-arrow-color;
+          top: -10px;
+        } @else if $ct-navigation-horizontal-arrow-type == "innie" {
+          border-top: $ct-navigation-horizontal-arrow-width-y solid $ct-navigation-horizontal-arrow-color;
+          top: 0;
+        }
+
       }
 
     }
 
     .contentTabsPanelCollection {
-      margin-top: -$navigation-horizontal-height;
-      margin-bottom: $navigation-horizontal-height;
+      margin-top: -$ct-navigation-horizontal-height;
+      margin-bottom: $ct-navigation-horizontal-height;
     }
 
   }
@@ -236,7 +253,7 @@ $pinned-panel-top-height: 150px;
     display: none;
     padding: 10px;
     color: #4c4d4f;
-    height: $component-height - 20;
+    height: $ct-height - 20;
     overflow-y: scroll;
     overflow-x: hidden;
 
@@ -270,13 +287,13 @@ $pinned-panel-top-height: 150px;
     }
 
     .contentTabsPanelContent {
-      height: $component-height - $pinned-panel-top-height - 20;
+      height: $ct-height - $ct-pinned-panel-top-height - 20;
       overflow-y: scroll;
       overflow-x: hidden;
     }
 
     .contentTabsPanelIntro {
-      height: $pinned-panel-top-height;
+      height: $ct-pinned-panel-top-height;
       padding: 0 0 10px;
       margin: 0 0 15px;
       border-bottom: 1px solid #ccc;
@@ -295,21 +312,26 @@ $pinned-panel-top-height: 150px;
 
     .contentTabsPanelContent {
       float: right;
-      width: $pinned-panel-left-total-width - $pinned-panel-left-intro-width;
-      height: $component-height - 20;
+      width: $ct-pinned-panel-left-total-width - $ct-pinned-panel-left-intro-width;
+      height: $ct-height - 20;
       overflow-y: scroll;
       overflow-x: hidden;
     }
 
     .contentTabsPanelIntro {
       float: left;
-      width: $pinned-panel-left-intro-width;
-      height: $component-height - 20;
+      width: $ct-pinned-panel-left-intro-width;
+      height: $ct-height - 20;
       overflow: hidden;
     }
 
     .oneColList, .twoColGrid {
       clear: none;
+    }
+
+    .contentTabsPanelIntroGraphic {
+      float: none;
+      margin: 0 0 10px;
     }
 
   }
