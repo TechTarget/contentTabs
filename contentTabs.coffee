@@ -1,5 +1,5 @@
 ###!
-Content Tabs v1.0.5 (http://okize.github.com/)
+Content Tabs v1.0.6 (http://okize.github.com/)
 Copyright (c) 2013 | Licensed under the MIT license
 http://www.opensource.org/licenses/mit-license.php
 ###
@@ -54,8 +54,6 @@ http://www.opensource.org/licenses/mit-license.php
 
     # plugin initializer
     init: ->
-
-      console.log(@options.pinnedPanelLocation)
 
       # don't display any tabs if disabled in options
       unless @options.displayTabs

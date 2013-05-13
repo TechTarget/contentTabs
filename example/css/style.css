@@ -138,7 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: #2ba6cb;
+  color: #19527f;
   text-decoration: none;
 }
 
@@ -148,7 +148,7 @@ a:hover {
 
 a:focus {
   outline: none;
-  color: #2ba6cb;
+  color: #19527f;
 }
 
 #micrositeContainerCompress {
@@ -224,13 +224,13 @@ a:focus {
   padding: 0 10px;
 }
 .contentTabs .contentTabsNav li a:hover {
-  color: black !important;
-  background-color: #d4e9f2 !important;
+  color: white !important;
+  background-color: #8cb1d2 !important;
   text-decoration: none !important;
 }
 .contentTabs .contentTabsNav li.active a {
   color: white !important;
-  background-color: #0099d8 !important;
+  background-color: #19527f !important;
   border-bottom: none;
   position: relative;
 }
@@ -264,11 +264,11 @@ a:focus {
 }
 .contentTabs.tabsVerticalLeft .contentTabsNav li.active a:after {
   right: -12px;
-  border-left: 12px solid #0099d8;
+  border-left: 12px solid #19527f;
 }
 .contentTabs.tabsVerticalLeft .contentTabsPanelCollection {
   float: right;
-  width: 740px;
+  width: 757px;
 }
 .contentTabs.tabsVerticalRight .contentTabsNav {
   float: right;
@@ -276,11 +276,11 @@ a:focus {
 }
 .contentTabs.tabsVerticalRight .contentTabsNav li.active a:before {
   left: -12px;
-  border-right: 12px solid #0099d8;
+  border-right: 12px solid #19527f;
 }
 .contentTabs.tabsVerticalRight .contentTabsPanelCollection {
   float: left;
-  width: 740px;
+  width: 757px;
 }
 .contentTabs .horizontalNavigation ul, .contentTabs.tabsHorizontalTop .contentTabsNav ul, .contentTabs.tabsHorizontalBottom .contentTabsNav ul {
   margin-bottom: 20px !important;
@@ -299,7 +299,7 @@ a:focus {
   border-bottom: 1px solid #cccccc;
 }
 .contentTabs.tabsHorizontalTop .contentTabsNav li.active a:after {
-  border-top: 10px solid #0099d8;
+  border-top: 10px solid #19527f;
   top: 35px;
 }
 .contentTabs.tabsHorizontalBottom .contentTabsNav {
@@ -310,7 +310,7 @@ a:focus {
   border-top: 1px solid #cccccc;
 }
 .contentTabs.tabsHorizontalBottom .contentTabsNav li.active a:before {
-  border-bottom: 10px solid #0099d8;
+  border-bottom: 10px solid #19527f;
   top: -10px;
 }
 .contentTabs.tabsHorizontalBottom .contentTabsPanelCollection {
@@ -344,19 +344,22 @@ a:focus {
   margin: 0 0 10px 10px;
 }
 .contentTabs.pinnedPanelTop .contentTabsPanel {
+  padding: 0;
   overflow-y: hidden;
   overflow-x: hidden;
+  height: 450px;
 }
 .contentTabs.pinnedPanelTop .contentTabsPanelContent {
-  height: 280px;
+  height: 270px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .contentTabs.pinnedPanelTop .contentTabsPanelIntro {
   height: 150px;
-  padding: 0 0 10px;
-  margin: 0 0 15px;
-  border-bottom: 1px solid #ccc;
+  background-color: #ececec;
+  padding: 15px 20px;
+  margin: 0 0 10px;
+  border-bottom: 1px solid #19527f;
   overflow: hidden;
 }
 .contentTabs.pinnedPanelLeft .contentTabsPanel {
@@ -374,11 +377,18 @@ a:focus {
 .contentTabs.pinnedPanelLeft .contentTabsPanelIntro {
   float: left;
   width: 250px;
+  padding: 0 5px 0 0;
+  background-color: white;
+  border-right: 1px solid #19527f;
   height: 430px;
   overflow: hidden;
 }
 .contentTabs.pinnedPanelLeft .oneColList, .contentTabs.pinnedPanelLeft .twoColGrid {
   clear: none;
+}
+.contentTabs.pinnedPanelLeft .contentTabsPanelIntroGraphic {
+  float: none;
+  margin: 0 0 10px;
 }
 
 /* may or may not be used */
@@ -413,8 +423,8 @@ a:focus {
 }
 .oneColList > ul li {
   border-top: 1px solid #ddd;
-  margin: 15px 0 5px;
-  padding: 15px 0 0;
+  margin: 15px 5px 5px;
+  padding: 15px 15px 0;
 }
 .oneColList > ul > li:first-child {
   border: none;

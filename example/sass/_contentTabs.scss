@@ -8,9 +8,9 @@ $ct-tab-height: 35px;
 $ct-tab-color: #000;
 $ct-tab-bgColor: #fff;
 $ct-tab-active-color: #fff;
-$ct-tab-active-bgColor: #0099d8;
-$ct-tab-hover-color: #000;
-$ct-tab-hover-bgColor: #d4e9f2;
+$ct-tab-active-bgColor: #19527f;
+$ct-tab-hover-color: #fff;
+$ct-tab-hover-bgColor: #8cb1d2;
 
 // vertical tab orientation
 $ct-navigation-vertical-bgColor: #fafafa;
@@ -18,7 +18,7 @@ $ct-navigation-vertical-width: 180px;
 $ct-navigation-vertical-arrow-color: $ct-tab-active-bgColor;
 $ct-navigation-vertical-arrow-width-x: 12px;
 $ct-navigation-vertical-arrow-width-y: 18px;
-$ct-panel-vertical-width: 740px;
+$ct-panel-vertical-width: 937px - $ct-navigation-vertical-width;
 
 // horizontal tab orientation
 $ct-navigation-horizontal-bgColor: #fff;
@@ -34,7 +34,11 @@ $ct-navigation-horizontal-arrow-width-y: 10px;
 // for 'pinned' panel if enabled
 $ct-pinned-panel-left-total-width: 910px;
 $ct-pinned-panel-left-intro-width: 250px;
+$ct-pinned-panel-left-bgColor: #fff;
+$ct-pinned-panel-left-border-color: $ct-tab-active-bgColor;
 $ct-pinned-panel-top-height: 150px;
+$ct-pinned-panel-top-bgColor: #ececec;
+$ct-pinned-panel-top-border-color: $ct-tab-active-bgColor;
 
 .contentTabs {
   border: 1px solid $ct-border-color;
@@ -282,21 +286,24 @@ $ct-pinned-panel-top-height: 150px;
   &.pinnedPanelTop {
 
     .contentTabsPanel {
+      padding: 0;
       overflow-y: hidden;
       overflow-x: hidden;
+      height: $ct-height;
     }
 
     .contentTabsPanelContent {
-      height: $ct-height - $ct-pinned-panel-top-height - 20;
+      height: $ct-height - $ct-pinned-panel-top-height - 30;
       overflow-y: scroll;
       overflow-x: hidden;
     }
 
     .contentTabsPanelIntro {
       height: $ct-pinned-panel-top-height;
-      padding: 0 0 10px;
-      margin: 0 0 15px;
-      border-bottom: 1px solid #ccc;
+      background-color: $ct-pinned-panel-top-bgColor;
+      padding: 15px 20px;
+      margin: 0 0 10px;
+      border-bottom: 1px solid $ct-pinned-panel-top-border-color;
       overflow: hidden;
     }
 
@@ -321,6 +328,9 @@ $ct-pinned-panel-top-height: 150px;
     .contentTabsPanelIntro {
       float: left;
       width: $ct-pinned-panel-left-intro-width;
+      padding: 0 5px 0 0;
+      background-color: $ct-pinned-panel-left-bgColor;
+      border-right: 1px solid $ct-pinned-panel-left-border-color;
       height: $ct-height - 20;
       overflow: hidden;
     }

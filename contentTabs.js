@@ -1,5 +1,5 @@
 /*!
-Content Tabs v1.0.5 (http://okize.github.com/)
+Content Tabs v1.0.6 (http://okize.github.com/)
 Copyright (c) 2013 | Licensed under the MIT license
 http://www.opensource.org/licenses/mit-license.php
 */
@@ -55,7 +55,6 @@ http://www.opensource.org/licenses/mit-license.php
         var tabs,
           _this = this;
 
-        console.log(this.options.pinnedPanelLocation);
         if (!this.options.displayTabs) {
           this.removeTabs();
           return;

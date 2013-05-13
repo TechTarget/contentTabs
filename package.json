@@ -2,7 +2,7 @@
   "name": "contentTabs",
   "main": "contentTabs",
   "description": "jQuery plugin for content tabs",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Morgan Wigmanich <okize123@gmail.com> (http://github.com/okize)",
   "license": "MIT"
 }
