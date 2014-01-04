@@ -1,5 +1,6 @@
 /*!
-Content Tabs v1.0.6 (http://okize.github.com/)
+contentTabs v1.0.6 (https://github.com/TechTarget/contentTabs)
+Author: Morgan Wigmanich <okize123@gmail.com> (http://github.com/okize)
 Copyright (c) 2013 | Licensed under the MIT license
 http://www.opensource.org/licenses/mit-license.php
 */
@@ -15,7 +16,6 @@ http://www.opensource.org/licenses/mit-license.php
   })(function($) {
     'use strict';
     var Tabs, defaults, pluginName;
-
     pluginName = 'contentTabs';
     defaults = {
       displayTabs: true,
@@ -54,7 +54,6 @@ http://www.opensource.org/licenses/mit-license.php
       Tabs.prototype.init = function() {
         var tabs,
           _this = this;
-
         if (!this.options.displayTabs) {
           this.removeTabs();
           return;
@@ -79,7 +78,6 @@ http://www.opensource.org/licenses/mit-license.php
 
       Tabs.prototype.getStateFromHash = function() {
         var state, _ref;
-
         this.hashObject = this.getHashObject();
         if (!this.hashObject) {
           return null;
@@ -93,7 +91,6 @@ http://www.opensource.org/licenses/mit-license.php
 
       Tabs.prototype.getHashObject = function() {
         var arg, args, arr, hash, item, _i, _len;
-
         hash = this.getUrlHash();
         if (!hash) {
           return null;
@@ -180,7 +177,6 @@ http://www.opensource.org/licenses/mit-license.php
 
       Tabs.prototype.pinPanels = function() {
         var $this, sectionsToPin;
-
         sectionsToPin = void 0;
         $this = void 0;
         this.el.addClass('pinPanelIntro').addClass(this.pinnedPanelLocationClassMap[this.options.pinnedPanelLocation]);

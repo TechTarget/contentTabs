@@ -1,5 +1,6 @@
 ###!
-Content Tabs v1.0.6 (http://okize.github.com/)
+contentTabs v1.0.6 (https://github.com/TechTarget/contentTabs)
+Author: Morgan Wigmanich <okize123@gmail.com> (http://github.com/okize)
 Copyright (c) 2013 | Licensed under the MIT license
 http://www.opensource.org/licenses/mit-license.php
 ###
