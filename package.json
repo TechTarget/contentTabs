@@ -1,8 +1,13 @@
 {
   "name": "contentTabs",
-  "main": "contentTabs",
+  "private": true,
+  "main": "contentTabs.js",
   "description": "jQuery plugin for content tabs",
   "version": "1.0.6",
   "author": "Morgan Wigmanich <okize123@gmail.com> (http://github.com/okize)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TechTarget/contentTabs"
+  },
   "license": "MIT"
 }
